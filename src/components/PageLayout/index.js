@@ -12,7 +12,7 @@ function PageLayout(props) {
       <header>
         <Navbar />
       </header>
-      <main className="flex-auto">{children}</main>
+      <main className="flex-auto mt-14">{children}</main>
 
       <Footer />
     </>

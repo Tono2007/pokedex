@@ -1,9 +1,11 @@
 import Head from 'next/head';
 import Image from 'next/image';
+import Link from 'next/link';
 import PageLayout from '@components/PageLayout';
 import Pokemons from './pokemons/index.page';
 import GenerateHeadPageSEO from '../helpers/seoPerPage';
 import styles from '../styles/Home.module.css';
+import pokeball from '../../public/assets/pokemon-logo.svg';
 
 export default function Home() {
   const sdf = '2';
@@ -13,6 +15,8 @@ export default function Home() {
       <GenerateHeadPageSEO title="fdf" descriptionPage="dfd" />
 
       <main className={styles.main}>
+        <Image src={pokeball} alt="Logo" width="300" height="100" />
+
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>

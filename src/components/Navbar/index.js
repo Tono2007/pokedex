@@ -5,20 +5,22 @@ import pokeball from '../../../public/assets/pokeball.png';
 
 function NavLink({ href, title }) {
   return (
-    <Link href={href}>
-      <a
-        className="text-contrastText hover:text-textPrimary"
-        aria-current="page"
-      >
-        {title}
-      </a>
-    </Link>
+    <li className="">
+      <Link href={href}>
+        <a
+          className="h-full text-contrastText hover:bg-CBlue
+         transition duration-300 flex px-5 items-center"
+        >
+          {title}
+        </a>
+      </Link>
+    </li>
   );
 }
 
 function Navbar() {
   return (
-    <nav className="px-2 py-1  bg-DBlue">
+    <nav className="px-2 bg-DBlue fixed  w-full">
       <div className="container flex flex-wrap justify-between items-center mx-auto ">
         <div className="flex gap-3">
           <Image src={pokeball} alt="Logo" width="30" height="30" />
@@ -30,28 +32,14 @@ function Navbar() {
         </div>
 
         <div className="">
-          <ul className="flex   p-4  flex-row gap-8 ">
-            <li>
-              <NavLink title="Inicio" href="/" />
-            </li>
-            <li>
-              <NavLink title="Pokemones" href="/pokemons" />
-            </li>
-            <li>
-              <NavLink title="Inicio" href="/" />
-            </li>
-            <li>
-              <NavLink title="Inicio" href="/" />
-            </li>
-            <li>
-              <NavLink title="Inicio" href="/" />
-            </li>
-            <li>
-              <NavLink title="Inicio" href="/" />
-            </li>
-            <li>
-              <NavLink title="Inicio" href="/" />
-            </li>
+          <ul className="h-14 flex flex-row  ">
+            <NavLink title="Inicio" href="/" />
+            <NavLink title="Pokemones" href="/pokemons" />
+            <NavLink title="Generaciones" href="/" />
+            <NavLink title="Habitats" href="/" />
+            <NavLink title="Locations" href="/" />
+            <NavLink title="Inicio" href="/" />
+            <NavLink title="Favoritos" href="/" />
           </ul>
         </div>
       </div>

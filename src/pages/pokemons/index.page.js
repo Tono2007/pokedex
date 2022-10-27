@@ -1,6 +1,7 @@
 import PageLayout from '@components/PageLayout';
 import GenerateHeadPageSEO from '../../helpers/seoPerPage';
 
+
 function Pokemons(props) {
   console.log(props);
   const { data: results } = props;
@@ -10,7 +11,7 @@ function Pokemons(props) {
         title="Pokemones"
         descriptionPage="Listado de pokemones"
       />
-      <div className="container">
+      <div className="container bg-slate-400">
         pokeeef
         {/*  {data ??
           data?.map(({ id, title, body }) => (
