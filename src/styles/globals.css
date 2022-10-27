@@ -9,11 +9,15 @@
     --color-primary: 255 115 179;
     --color-secondary: 111 114 185;
    } */
-  h1 {
+
+  /* h1 {
     @apply font-light text-2xl mb-4;
   }
-  h2 {
-    @apply font-light text-xl mb-3;
+*/
+  #__next {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
   @media screen and (min-width: 400px) {
@@ -67,7 +71,7 @@
   }
 }
 @layer components {
-  .btn-main {
-    @apply bg-sky-600 hover:bg-sky-700 px-5 py-3 text-white rounded-lg;
+  .container {
+    @apply w-11/12 max-w-7xl mx-auto;
   }
 }

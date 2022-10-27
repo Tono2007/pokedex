@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Navbar from '@components/Navbar';
 import PropTypes from 'prop-types';
 import GenerateHeadPageSEO from '../../helpers/seoPerPage';
+import Footer from '@components/Footer';
 
 function PageLayout(props) {
   const { children } = props;
@@ -11,16 +12,9 @@ function PageLayout(props) {
       <header>
         <Navbar />
       </header>
-      <main>{children}</main>
-      <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-        </a>
-      </footer>
+      <main className="flex-auto">{children}</main>
+
+      <Footer />
     </>
   );
 }

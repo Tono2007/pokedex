@@ -15,7 +15,7 @@ module.exports = {
         bgTertiary: '#F5F5F6',
         textPrimary: '#24303A',
         textSecondary: '#C7CACC',
-        contrastText: '#FFFFFF',
+        contrastText: '#F5F5F6',
         red: '#FF0000',
         BURed: '#CC0000',
         CBlue: '#3264AF',

@@ -7,6 +7,7 @@ export default function Document() {
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="robots" content="index, follow" />
 
         <link rel="icon" href="/images/favicon.ico" />
 
@@ -22,7 +23,7 @@ export default function Document() {
         />
         {/* <title></title> */}
       </Head>
-      <body className="bg-bgPrimary  font-montserrat text-textPrimary">
+      <body className="bg-bgPrimary font-montserrat text-textPrimary">
         <Main />
         <NextScript />
       </body>

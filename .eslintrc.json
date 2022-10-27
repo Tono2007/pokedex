@@ -20,9 +20,8 @@
     "semi": "warn",
     "no-unused-vars": "warn",
     "no-unused-expressions": "warn",
-    "react/prop-types": 0,
     "no-use-before-define": "warn",
-    "react/no-array-index-key": 0,
+    "jsx-a11y/anchor-is-valid": 0,
     "react/jsx-props-no-spreading": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": 2
