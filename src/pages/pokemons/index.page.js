@@ -1,34 +1,76 @@
-import PageLayout from '@components/PageLayout';
+import { useState, useEffect } from 'react';
+import PokemonCard from '@components/PokemonCard';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import GenerateHeadPageSEO from '../../helpers/seoPerPage';
+import { getPokemons } from '../../services/pokemon';
 
-
+const PAGE_LIMIT = 50;
 function Pokemons(props) {
-  console.log(props);
-  const { data: results } = props;
+  const { data } = props;
+  const [page, setPage] = useState(1);
+  const [pokemons, setPokemons] = useState(data);
+  const [hasMore, setHasMore] = useState(true);
+
+  const fetchPokemons = async () => {
+    try {
+      const res = await getPokemons({
+        limit: PAGE_LIMIT,
+        offset: PAGE_LIMIT * page,
+      });
+      console.log(res);
+      const { results } = res.data;
+      if (results.length === 0) {
+        setHasMore(false);
+        return;
+      }
+      setPokemons([...pokemons, ...results]);
+      setPage((newPage) => newPage + 1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <PageLayout>
+    <div className="container bg-slate-400">
       <GenerateHeadPageSEO
         title="Pokemones"
         descriptionPage="Listado de pokemones"
       />
-      <div className="container bg-slate-400">
-        pokeeef
-        {/*  {data ??
-          data?.map(({ id, title, body }) => (
-            <div key={id}>
-              <h3>{title}</h3>
-              <p>{body}</p>
+
+      {/* {pokemons.length > 0 && (
+       
+      )} */}
+      <section>
+        pokemons
+        <InfiniteScroll
+          className="grid grid-cols-4 auto-rows-auto gap-6"
+          dataLength={pokemons.length}
+          next={fetchPokemons}
+          hasMore={hasMore}
+          loader={
+            <div className="preloader-wrapper small active">
+              Buscando Pokemones
             </div>
-          ))} */}
-      </div>
-    </PageLayout>
+          }
+          endMessage={
+            <center>
+              <b>No hay mas instructores registrados</b>
+            </center>
+          }
+        >
+          {pokemons?.map((pokemon) => (
+            <PokemonCard key={pokemon.name} pokemonIdName={pokemon.name} />
+          ))}
+        </InfiniteScroll>
+      </section>
+    </div>
   );
 }
-// eslint-disable-next-line consistent-return
+
 export const getStaticProps = async () => {
   try {
-    const res = await fetch('https://pokeapi.co/api/v2/pokemon/?limit=151');
-    const { results } = await res.json();
+    const res = await getPokemons({ limit: PAGE_LIMIT, offset: '0' });
+    const { results } = res.data;
     return {
       props: {
         data: results,
@@ -37,7 +79,11 @@ export const getStaticProps = async () => {
   } catch (error) {
     console.log(error);
   }
-  return [];
+  return {
+    props: {
+      data: [],
+    },
+  };
 };
 
 export default Pokemons;

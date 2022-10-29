@@ -23,6 +23,8 @@
     "no-use-before-define": "warn",
     "jsx-a11y/anchor-is-valid": 0,
     "react/jsx-props-no-spreading": 0,
+    "consistent-return": 0,
+    "no-console": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": 2
   }
