@@ -14,3 +14,8 @@ export const listEmpty = (number) => {
   }
   return array;
 };
+
+export function padNumber(n) {
+  const s = `000${n}`;
+  return s.substr(s.length - 4);
+}

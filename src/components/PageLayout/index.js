@@ -15,7 +15,7 @@ function PageLayout(props) {
       <header>
         <Navbar location={router.pathname} />
       </header>
-      <main className="flex-auto mt-14 overflow-hidden">
+      <main className="flex-auto mt-14">
         <PageTransition location={router.pathname}>{children}</PageTransition>
       </main>
       {/*  <main className="flex-auto mt-14">{children}</main> */}

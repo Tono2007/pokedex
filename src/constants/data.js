@@ -1,0 +1,2 @@
+export const FAVORITES_KEY = 'FAVORITES_POKEMONS_DATA';
+export const PAGE_LIMIT = 50;

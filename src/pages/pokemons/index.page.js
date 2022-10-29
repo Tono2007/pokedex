@@ -3,8 +3,8 @@ import PokemonCard from '@components/PokemonCard';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import GenerateHeadPageSEO from '../../helpers/seoPerPage';
 import { getPokemons } from '../../services/pokemon';
+import { PAGE_LIMIT } from '../../constants/data';
 
-const PAGE_LIMIT = 50;
 function Pokemons(props) {
   const { data } = props;
   const [page, setPage] = useState(1);
@@ -31,39 +31,45 @@ function Pokemons(props) {
   };
 
   return (
-    <div className="container bg-slate-400">
+    <section className="container">
       <GenerateHeadPageSEO
         title="Pokemones"
         descriptionPage="Listado de pokemones"
       />
-
       {/* {pokemons.length > 0 && (
        
       )} */}
-      <section>
-        pokemons
-        <InfiniteScroll
-          className="grid grid-cols-4 auto-rows-auto gap-6"
-          dataLength={pokemons.length}
-          next={fetchPokemons}
-          hasMore={hasMore}
-          loader={
-            <div className="preloader-wrapper small active">
-              Buscando Pokemones
-            </div>
-          }
-          endMessage={
-            <center>
-              <b>No hay mas instructores registrados</b>
-            </center>
-          }
-        >
-          {pokemons?.map((pokemon) => (
-            <PokemonCard key={pokemon.name} pokemonIdName={pokemon.name} />
-          ))}
-        </InfiniteScroll>
-      </section>
-    </div>
+
+      <header className="mt-10">
+        <h1 className="text-5xl font-bold ">Pokedex</h1>
+        <h2 className="text-base text-textSecondary">
+          Aqui podras encontrar todos lo pokemones
+        </h2>
+      </header>
+
+      <InfiniteScroll
+        className="grid grid-cols-4 auto-rows-auto gap-7 mb-5  pt-10"
+        dataLength={pokemons.length}
+        next={fetchPokemons}
+        hasMore={hasMore}
+        loader={
+          <div className="text-center w-full col-span-5">
+            <span className="text-center text-base ">
+              Buscando Pokemones...
+            </span>
+          </div>
+        }
+        endMessage={
+          <center>
+            <b>No hay mas instructores registrados</b>
+          </center>
+        }
+      >
+        {pokemons?.map((pokemon) => (
+          <PokemonCard key={pokemon.name} pokemonIdName={pokemon.name} />
+        ))}
+      </InfiniteScroll>
+    </section>
   );
 }
 

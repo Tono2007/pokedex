@@ -3,11 +3,7 @@ import React from 'react';
 
 function Pokemon({ pokemon }) {
   console.log(pokemon);
-  return (
-    <PageLayout>
-      <div>POkemin id</div>
-    </PageLayout>
-  );
+  return <div>POkemin id {JSON.stringify(pokemon)}</div>;
 }
 
 export const getServerSideProps = async (context) => {

@@ -7,3 +7,6 @@ export function getPokemons({ limit, offset }) {
 export function getPokemon(pokemon) {
   return axios.get(`/pokemon/${pokemon}`);
 }
+export function getPokemonTypes() {
+  return axios.get(`/type?limit=1000&offset=0`);
+}

@@ -13,7 +13,20 @@ export default function Home() {
     <main className={styles.main}>
       <GenerateHeadPageSEO title="fdf" descriptionPage="dfd" />
       <Image src={pokeball} alt="Logo" width="300" height="100" />
-
+      <header className="p-10">
+        <h1
+          className=" text-5xl font-extrabold  bg-clip-text
+         text-transparent bg-gradient-to-r from-CBlue to-BURed"
+        >
+          Pokedex generaciones habitat s y asmas
+        </h1>
+        <h2
+          className=" text-5xl font-bold  bg-clip-text
+         text-transparent bg-gradient-to-r from-BURed to-CBlue"
+        >
+          Aqui podras encontrar todos lo pokemones
+        </h2>
+      </header>
       <h1 className={styles.title}>
         Welcome to <a href="https://nextjs.org">Next.js!</a>
       </h1>
