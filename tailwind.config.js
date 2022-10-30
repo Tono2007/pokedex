@@ -30,7 +30,7 @@ module.exports = {
         shadow: '#C7CABB',
         fire: '#fb8c00',
         grass: '#689f38',
-        electric: '#fdd835',
+        electric: '#f5d130',
         water: '#039be5',
         ice: '#00bcd4',
         ground: '#795548',

@@ -99,8 +99,7 @@ function Generation({ generation }) {
                   className={`  capitalize
                         rounded
                         text-primaryText text-xs  font-semibold
-                    bg-${generation.name} 
-                    `}
+                     `}
                 >
                   {species.name}
                 </span>

@@ -88,11 +88,16 @@ function PokemonCard({ pokemonIdName }) {
           </div>
 
           <Image
-            src={pokemon?.sprites?.front_default || ''}
+            src={
+              pokemon?.sprites?.other?.['official-artwork']?.front_default ||
+              pokemon?.sprites?.front_default ||
+              ''
+            }
             alt="pokemon back"
             objectFit="contain"
             width="150"
             height="100"
+            layout="responsive"
           />
         </div>
       </button>
