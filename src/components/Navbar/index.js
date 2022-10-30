@@ -46,6 +46,9 @@ function Navbar({ location }) {
                 active={location === route.path}
               />
             ))}
+            <li className={`relative ${''}`}>
+              <input placeholder="Buscar pokemons" />
+            </li>
           </ul>
         </div>
       </div>

@@ -81,8 +81,10 @@ module.exports = {
       pattern:
         /border-(steel|unknown|shadow|fire|grass|electric|water|ice|ground|rock|fairy|poison|bug|ghost|dragon|dark|psychic|flying|fighting|normal)/,
     },
-    'bg-normal',
-    'lg:text-4xl',
+    {
+      pattern:
+        /from-(steel|unknown|shadow|fire|grass|electric|water|ice|ground|rock|fairy|poison|bug|ghost|dragon|dark|psychic|flying|fighting|normal)/,
+    },
   ],
   plugins: [],
 };

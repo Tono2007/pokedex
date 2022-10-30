@@ -14,3 +14,10 @@ export function getPokemonTypes() {
 export function getTypeDetails(type) {
   return axios.get(`/type/${type}`);
 }
+
+export function getGenerations() {
+  return axios.get(`/generation`);
+}
+export function getGenerationDetails(generation) {
+  return axios.get(`/generation/${generation}`);
+}

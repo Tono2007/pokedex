@@ -79,57 +79,64 @@ function PokemonType({ type }) {
         </div> */}
       </div>
       <div
-        className={`relative bg-bgPrimary p-8 border-t-8
-       rounded-md w-[90%] mx-auto shadow-xl border-${type.name}
-       flex flex-col gap-5 h-full`}
+        className={`relative bg-bgPrimary p-8 border-t-8 rounded-md w-[90%] h-full  mx-auto 
+        overflow-hidden  shadow-xl border-${type.name}
+       before:content-[''] before:absolute before:w-[70%] before:aspect-square  before:rounded-full
+       before:top-[-0%] before:right-[-0%] before:translate-x-[50%]  before:translate-y-[-50%]
+       before:bg-gradient-to-bl from-${type.name}/50 before:opacity-50`}
       >
-        <div className="flex justify-between content-center flex-wrap">
-          <h5 className="text-3xl font-bold  capitalize ">
-            {type.names.find((name) => name.language.name === 'es')?.name} -{' '}
-            {type?.name}
-          </h5>
-          <h6 className="uppercase text-md text-textSecondary">
-            {type?.generation?.name}
-          </h6>
-        </div>
-        <div className="flex flex-col h-full">
-          {Object.entries(type?.damage_relations)?.map(
-            ([relation, relationTypes]) => (
-              <div key={relation} className="p-1 bordfer-2">
-                <div className="flex gap-2 flex-wrap">
-                  <p className="text-sm">{relationsTitles[relation]} -</p>
-                  {relationTypes?.map((relationType) => (
-                    <span
-                      key={relationType}
-                      className={`  capitalize
+        <div
+          className={` relative
+       flex flex-col gap-5 `}
+        >
+          <div className="flex justify-between content-center flex-wrap">
+            <h5 className="text-3xl font-bold  capitalize ">
+              {type.names.find((name) => name.language.name === 'es')?.name} -{' '}
+              {type?.name}
+            </h5>
+            <h6 className="uppercase text-md text-textSecondary">
+              {type?.generation?.name}
+            </h6>
+          </div>
+          <div className="flex flex-col h-full">
+            {Object.entries(type?.damage_relations)?.map(
+              ([relation, relationTypes]) => (
+                <div key={relation} className="p-1 bordfer-2">
+                  <div className="flex gap-2 flex-wrap">
+                    <p className="text-sm">{relationsTitles[relation]} -</p>
+                    {relationTypes?.map((relationType) => (
+                      <span
+                        key={relationType}
+                        className={`  capitalize
                         rounded
                         text-contrastText text-xs  font-semibold
                     bg-${relationType.name} p-1
                     `}
-                    >
-                      {relationType.name}
-                    </span>
-                  ))}
+                      >
+                        {relationType.name}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ),
-          )}
-        </div>
-        <hr />
-        <p className="text-textSecondary text-base">
-          Total de pokemones de este tipo:{' '}
-          <span className="text-textPrimary font-medium text-sm">
-            {' '}
-            {type?.pokemon?.length}
-          </span>
-        </p>
-        <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-2 gap-5  ">
-          {type.pokemon.slice(0, 4).map((pokemon) => (
-            <PokemonCard
-              key={pokemon.pokemon.name}
-              pokemonIdName={pokemon.pokemon.name}
-            />
-          ))}
+              ),
+            )}
+          </div>
+          <hr />
+          <p className="text-textSecondary text-base">
+            Total de pokemones de este tipo:{' '}
+            <span className="text-textPrimary font-medium text-sm">
+              {' '}
+              {type?.pokemon?.length}
+            </span>
+          </p>
+          <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-2 gap-5  ">
+            {type.pokemon.slice(0, 4).map((pokemon) => (
+              <PokemonCard
+                key={pokemon.pokemon.name}
+                pokemonIdName={pokemon.pokemon.name}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </article>
@@ -141,7 +148,6 @@ export const getStaticProps = async () => {
     const res = await getPokemonTypes();
     const { results } = res.data;
     const typesPromises = results.map((type) => {
-      console.log(type);
       return getTypeDetails(type.name);
     });
     const typesPromisesData = await Promise.all(typesPromises);
