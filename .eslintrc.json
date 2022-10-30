@@ -26,7 +26,16 @@
     "consistent-return": 0,
     "jsx-a11y/click-events-have-key-events": "off",
     "no-console": "off",
+    "import/no-unresolved": [1, { "caseSensitive": false }],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": 2
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@components", "./src/components"]],
+        "extensions": [".js", ".ts", ".tsx", ".jsx", ".json"]
+      }
+    }
   }
 }

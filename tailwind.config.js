@@ -15,7 +15,7 @@ module.exports = {
         bgTertiary: '#F5F5F6',
 
         textPrimary: '#24303A',
-        textSecondary: '#b3b6b8',
+        textSecondary: '#a1a4a7',
         textTertiary: '#C7CACC',
         contrastText: '#F5F5F6',
 
@@ -76,6 +76,10 @@ module.exports = {
     {
       pattern:
         /shadow-(steel|unknown|shadow|fire|grass|electric|water|ice|ground|rock|fairy|poison|bug|ghost|dragon|dark|psychic|flying|fighting|normal)/,
+    },
+    {
+      pattern:
+        /border-(steel|unknown|shadow|fire|grass|electric|water|ice|ground|rock|fairy|poison|bug|ghost|dragon|dark|psychic|flying|fighting|normal)/,
     },
     'bg-normal',
     'lg:text-4xl',

@@ -48,7 +48,8 @@ function Pokemons(props) {
       </header>
 
       <InfiniteScroll
-        className="grid grid-cols-4 auto-rows-auto gap-7 mb-5  pt-10"
+        className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3
+         lg:grid-cols-4  xl:grid-cols-4  auto-rows-auto gap-7 mb-5  pt-10"
         dataLength={pokemons.length}
         next={fetchPokemons}
         hasMore={hasMore}
