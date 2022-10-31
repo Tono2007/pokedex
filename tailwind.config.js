@@ -68,7 +68,10 @@ module.exports = {
     },
   },
   safelist: [
-    'bg-fire',
+    {
+      pattern:
+        /text-(steel|unknown|shadow|fire|grass|electric|water|ice|ground|rock|fairy|poison|bug|ghost|dragon|dark|psychic|flying|fighting|normal)/,
+    },
     {
       pattern:
         /bg-(steel|unknown|shadow|fire|grass|electric|water|ice|ground|rock|fairy|poison|bug|ghost|dragon|dark|psychic|flying|fighting|normal)/,

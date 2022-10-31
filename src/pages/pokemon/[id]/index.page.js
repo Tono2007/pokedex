@@ -1,8 +1,14 @@
 import Image from 'next/image';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import {
+  BsPeaceFill,
+  BsFillDiagram3Fill,
+  BsFillStarFill,
+} from 'react-icons/bs';
+
 import { GiRank3 } from 'react-icons/gi';
 import { getPokemon } from '../../../services/pokemon';
-import { padNumber } from '../../../helpers';
+import { padNumber, capitalize } from '../../../helpers';
 
 import pokeball from '../../../../public/assets/pokeball.svg';
 import pokeball2 from '../../../../public/assets/pokeball2.svg';
@@ -12,7 +18,7 @@ function Pokemon({ data: pokemon }) {
   return (
     <div
       className={`bg-${pokemon.types[0].type.name}/80 
-       min-h-screen flex flex-col gap-20
+       min-h-screen flex flex-col gap-16
        overflow-hidden   
 
        `}
@@ -58,9 +64,9 @@ function Pokemon({ data: pokemon }) {
               {pokemon?.types?.map(({ type }) => (
                 <span
                   key={type.name}
-                  className={`py-0.5 px-1   rounded-md text-xs
+                  className={`py-0.5 px-1   rounded-md text-sm
                   border border-white/50
-                   text-contrastText  capitalize ${`bg-${type.name}`}`}
+                   text-contrastText  capitalize bg-${type.name}`}
                 >
                   {type.name}
                 </span>
@@ -103,91 +109,196 @@ function Pokemon({ data: pokemon }) {
           </div>
         </div>
       </header>
-      <section
-        className={`container relative border-l-8 border-${
-          pokemon.types[0].type.name || 'grass'
-        }  p-8 rounded bg-bgTertiary shadow-lg`}
-      >
+
+      <Section borderColor={pokemon.types[0].type.name} classes="relative">
         <div className="flex justify-between content-center ">
-          <h6 className="text-xl font-bold capitalize">{pokemon?.name}</h6>
-          <p className="text-sm text-textSecondary">
-            Altura:
-            <span className="text-base text-textPrimary">
-              {' '}
-              {pokemon.height}
-            </span>{' '}
-            - Peso:
-            <span className="text-base text-textPrimary">
-              {' '}
-              {pokemon.weight}
-            </span>
-          </p>
-        </div>
-        <div className="flex gap-3 flex-wrap ">
-          <div className="p-3 bg-red/40">
-            <GiRank3 />
-            dd
+          <div>
+            <h6 className="text-3xl font-extrabold capitalize mb-4">
+              {pokemon?.name}
+            </h6>
+            <p className="text-sm text-textSecondary">
+              Altura:
+              <span className="text-base text-textPrimary">
+                {' '}
+                {pokemon.height}
+              </span>{' '}
+              - Peso:
+              <span className="text-base text-textPrimary">
+                {' '}
+                {pokemon.weight}
+              </span>
+            </p>
+            <p className="text-sm text-textSecondary  ">
+              Formas:
+              {pokemon.forms.map((form) => (
+                <span
+                  key={form.name}
+                  className={` ml-1 capitalize
+                        rounded
+                        text-textPrimary text-xbases  
+                     `}
+                >
+                  {form.name}
+                </span>
+              ))}
+            </p>
+            <p className="text-sm text-textSecondary  ">
+              Orden:
+              <span
+                className={` ml-1 capitalize
+                        rounded
+                        text-textPrimary text-xbases  
+                     `}
+              >
+                {pokemon.order}
+              </span>
+            </p>
+            <p className="text-sm text-textSecondary  ">
+              Habilidades:
+              {pokemon.abilities.map((ability) => (
+                <span
+                  key={ability.ability.name}
+                  className={` ml-1 capitalize
+                        rounded
+                        text-textPrimary text-xbases
+                         p-0.5 px-1 bg-${pokemon.types[0].type.name}/30
+                     `}
+                >
+                  {ability.ability.name}
+                  <BsFillStarFill className="inline text-xs ml-1" />
+                </span>
+              ))}
+            </p>
+          </div>
+          <div className="flex gap-3 justify-center content-center flex-wrap ">
+            <Box
+              color={pokemon.types[0].type.name}
+              title="Experiencia"
+              subtitle={pokemon?.base_experience}
+              variant={2}
+              Icon={GiRank3}
+            />
+            <Box
+              color={pokemon.types[0].type.name}
+              title="Especie"
+              subtitle={pokemon.species.name}
+              Icon={BsPeaceFill}
+            />
+            <Box
+              color={pokemon.types[0].type.name}
+              title="Tipo"
+              subtitle={pokemon.types[0].type.name}
+              variant={2}
+              Icon={BsFillDiagram3Fill}
+            />
           </div>
         </div>
-        nombre altora peso
-        <br />
-        <span>base exp - especie - tipo</span>
-        <br />
-        <p className="text-sm text-textSecondary  ">
-          Formas:
-          {pokemon.forms.map((form) => (
-            <span
-              key={form.name}
-              className={` ml-1 capitalize
-                        rounded
-                        text-textPrimary text-xbases  
-                     `}
-            >
-              {form.name}
-            </span>
-          ))}
-        </p>
-        <p className="text-sm text-textSecondary  ">
-          Orden:
-          <span
-            className={` ml-1 capitalize
-                        rounded
-                        text-textPrimary text-xbases  
-                     `}
-          >
-            {pokemon.order}
-          </span>
-        </p>
-        <p className="text-sm text-textSecondary  ">
-          Habilidades:
-          {pokemon.abilities.map((ability) => (
-            <span
-              key={ability.ability.name}
-              className={` ml-1 capitalize
-                        rounded
-                        text-textPrimary text-xbases  
-                     `}
-            >
-              {ability.ability.name}
-            </span>
-          ))}
-        </p>
-      </section>
-      <section
-        className={`container border-l-8 border-${
-          pokemon.types[0].type.name || 'grass'
-        }  p-8 rounded bg-bgTertiary shadow-lg`}
-      >
-        <h6 className="text-xl font-bold capitalize">Estadisticas</h6>
-      </section>
-      <section
-        className={`container border-l-8 border-${
-          pokemon.types[0].type.name || 'grass'
-        }  p-8 rounded bg-bgTertiary shadow-lg`}
-      >
+      </Section>
+      <Section borderColor={pokemon.types[0].type.name}>
+        <h6 className="text-xl font-bold capitalize mb-4">Estadisticas</h6>
+
+        {pokemon.stats.map((stat) => (
+          <StatBar
+            key={stat.stat}
+            stat={stat}
+            color={pokemon.types[0].type.name}
+          />
+        ))}
+      </Section>
+      <Section borderColor={pokemon.types[0].type.name} classes="mb-8">
         <h6 className="text-xl font-bold capitalize">Imagenes</h6>
-      </section>
+        <div className="w-full flex justify-center content-center flex-wrap gap-4 mt-6">
+          {Object.entries(pokemon.sprites.other)
+            .filter(([key, sprite]) => sprite.front_default)
+            .map(([key, sprite]) => (
+              <PokemonImage
+                key={pokemon}
+                src={sprite.front_default}
+                title={key}
+              />
+            ))}
+          {Object.entries(pokemon.sprites)
+            .filter(
+              ([key, sprite]) =>
+                key !== 'other' && key !== 'versions' && sprite,
+            )
+            .map(([key, sprite]) => (
+              <PokemonImage key={pokemon} src={sprite} title={key} />
+            ))}
+
+          {/* <PokemonImage key={pokemon} id={3} />
+          <PokemonImage key={pokemon} id={3} />
+          <PokemonImage key={pokemon} id={3} />
+          <PokemonImage key={pokemon} id={3} />
+          <PokemonImage key={pokemon} id={3} />
+          <PokemonImage key={pokemon} id={3} />
+          <PokemonImage key={pokemon} id={3} />
+          <PokemonImage key={pokemon} id={3} />
+          <PokemonImage key={pokemon} id={3} /> */}
+        </div>
+      </Section>
     </div>
+  );
+}
+
+function StatBar({ stat, color }) {
+  return (
+    <div className="flex justify-between">
+      <p className="text-base font-medium text-textSecondary capitalize">
+        {stat.stat.name}:
+        <span className="text-base text-textPrimary"> {stat.base_stat}</span>{' '}
+      </p>
+      <div class="w-[50%] bg-gray-300    h-3">
+        <div class={`bg-${color} h-3 `} style={{ width: '45%' }} />
+      </div>
+    </div>
+  );
+}
+
+function PokemonImage({ id, src, title }) {
+  return (
+    <div className=" block h-auto w-[20%] min-w-[200px]">
+      <p className="text-xs capitalize">{capitalize(title)}</p>
+      <Image
+        src={src}
+        alt="pokemon back"
+        height="200px"
+        width="200px"
+        layout="responsive"
+        objectFit="contain"
+      />
+    </div>
+  );
+}
+
+function Box({ Icon, title, subtitle, color, variant = 1 }) {
+  const bgColor = variant === 1 ? `bg-${color}/100` : `bg-${color}/20`;
+  const iconColor = variant === 1 ? `text-contrastText` : `text-${color}`;
+  const textColor = variant === 1 ? `text-contrastText` : `text-textPrimary`;
+
+  return (
+    <div
+      className={`p-4 ${bgColor} rounded flex flex-col justify-center w-22
+       items-center gap-2 min-w-[150px]`}
+    >
+      <h6 className={`text-lg font-medium ${textColor} `}>{title}</h6>
+      <Icon className={`text-5xl  ${iconColor}`} />
+      <p className={`text-sm font-extrabold capitalize ${textColor}`}>
+        {subtitle}
+      </p>
+    </div>
+  );
+}
+
+function Section({ children, borderColor, classes }) {
+  return (
+    <section
+      className={`container border-l-8 border-${
+        borderColor || 'grass'
+      }  p-8 rounded bg-bgTertiary shadow-lg ${classes}`}
+    >
+      {children}
+    </section>
   );
 }
 

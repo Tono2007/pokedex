@@ -3,6 +3,11 @@
 @tailwind components;
 
 @tailwind utilities;
+#nprogress .bar {
+  /* background: red;
+  height: 3px; */
+  @apply h-1 bg-GoldenYellow;
+}
 
 @layer base {
   /*  :root {
@@ -19,6 +24,7 @@
     flex-direction: column;
     min-height: 100vh;
   }
+
   @media screen and (min-width: 400px) {
     /* Tamaño del scroll */
     ::-webkit-scrollbar {
@@ -47,4 +53,6 @@
   .container {
     @apply w-11/12 max-w-7xl mx-auto;
   }
+}
+@layer utilities {
 }

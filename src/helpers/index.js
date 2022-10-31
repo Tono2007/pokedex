@@ -19,3 +19,16 @@ export function padNumber(n) {
   const s = `000${n}`;
   return s.substr(s.length - 4);
 }
+
+export function capitalize(str) {
+  return str.replace(/[-_]/g, ' ');
+}
+
+export function getPokemonDefaultImg(sprites) {
+  return (
+    sprites?.other?.dream_world?.front_default ||
+    sprites?.other?.['official-artwork']?.front_default ||
+    sprites?.front_default ||
+    ''
+  );
+}
