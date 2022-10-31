@@ -26,6 +26,7 @@ export default function Home() {
         >
           Aqui podras encontrar todos lo pokemones
         </h2>
+        Busca por nombre o utilizando el numero nacional...
       </header>
       <h1 className={styles.title}>
         Welcome to <a href="https://nextjs.org">Next.js!</a>

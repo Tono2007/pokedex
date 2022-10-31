@@ -5,16 +5,24 @@ import {
   BsFillDiagram3Fill,
   BsFillStarFill,
 } from 'react-icons/bs';
-
-import { GiRank3 } from 'react-icons/gi';
-import { getPokemon } from '../../../services/pokemon';
+import {
+  GiRank3,
+  GiHeartPlus,
+  GiCheckedShield,
+  GiBroadsword,
+  GiCrossedSwords,
+  GiEdgedShield,
+  GiRunningNinja,
+  GiMineExplosion,
+} from 'react-icons/gi';
+import { getPokemon, getPokemonSpecieDetail } from '../../../services/pokemon';
 import { padNumber, capitalize } from '../../../helpers';
 
 import pokeball from '../../../../public/assets/pokeball.svg';
 import pokeball2 from '../../../../public/assets/pokeball2.svg';
 
-function Pokemon({ data: pokemon }) {
-  console.log(pokemon);
+function Pokemon({ data: pokemon, description }) {
+  console.log(pokemon, description);
   return (
     <div
       className={`bg-${pokemon.types[0].type.name}/80 
@@ -29,7 +37,7 @@ function Pokemon({ data: pokemon }) {
          `}
       >
         <div
-          className={`relative flex justify-around content-center flex-wrap items-center
+          className={`relative flex justify-around content-center   items-center
            container w-[100%]  mt-20
            after:content-[''] after:absolute after:w-[50%] after:aspect-square  after:rounded-full
       after:top-0 after:right-0 after:translate-x-[70%]  after:translate-y-[-50%]
@@ -58,8 +66,20 @@ function Pokemon({ data: pokemon }) {
           <div className="relative">
             <span className="text-sm font-bold">#{padNumber(pokemon?.id)}</span>
             <h1 className="text-6xl font-extrabold  capitalize text-contrastText">
-              {pokemon.name}
+              {pokemon?.name}
+              <span
+                className={`italic text-xs font-medium pl-1 border-b-2 border-${
+                  pokemon?.types[0].type.name || 'CBlue'
+                }`}
+              >
+                {
+                  description?.genera.find(
+                    (flavor) => flavor.language.name === 'es',
+                  )?.genus
+                }
+              </span>
             </h1>
+
             <div className="flex flex-wrap gap-2 mt-2">
               {pokemon?.types?.map(({ type }) => (
                 <span
@@ -72,14 +92,14 @@ function Pokemon({ data: pokemon }) {
                 </span>
               ))}
             </div>
+
             <button type="button">
               Agregar a favoritos <AiFillHeart />
             </button>
-            dsd {pokemon.types[0].type.name}
           </div>
-          <div className="">
+          <div className="relative z-10">
             <div
-              className="   p-2 rounded border-l-4 border-b-4 relative border-textPrimary
+              className=" p-2 rounded border-l-4 border-b-4 relative border-textPrimary
            after:content-[''] after:absolute after:w-3 after:h-3 after:rounded-full
            after:top-0 after:left-0 after:bg-bgPrimary
            after:translate-x-[-65%]  after:translate-y-[-50%]
@@ -88,10 +108,10 @@ function Pokemon({ data: pokemon }) {
            before:translate-x-[50%]  before:translate-y-[65%]"
             >
               <p className="text-contrastText absolute -bottom-6 text-xs w-full text-center">
-                Peso: {pokemon.weight}
+                Peso: {pokemon.weight} kg.
               </p>
-              <p className="text-contrastText absolute top-20  -left-10 -rotate-90 text-xs   text-center">
-                Altura: {pokemon.height}
+              <p className="text-contrastText absolute top-20  -left-12 -rotate-90 text-xs   text-center">
+                Altura: {pokemon.height} m.
               </p>
               <Image
                 src={
@@ -101,8 +121,8 @@ function Pokemon({ data: pokemon }) {
                   ''
                 }
                 alt="pokemon back"
-                height="150px"
-                width="150px"
+                height="250px"
+                width="250px"
                 objectFit="contain"
               />
             </div>
@@ -111,26 +131,35 @@ function Pokemon({ data: pokemon }) {
       </header>
 
       <Section borderColor={pokemon.types[0].type.name} classes="relative">
-        <div className="flex justify-between content-center ">
+        <div className="flex justify-between content-center items-center my-1">
           <div>
-            <h6 className="text-3xl font-extrabold capitalize mb-4">
+            <h6 className="text-3xl font-extrabold capitalize mb-2">
               {pokemon?.name}
             </h6>
+            <p className="w-full my-4">
+              {
+                description?.flavor_text_entries.find(
+                  (flavor) => flavor.language.name === 'es',
+                )?.flavor_text
+              }
+            </p>
+            <p className="text-sm text-textSecondary">
+              Peso:
+              <span className="text-base text-textPrimary">
+                {' '}
+                {pokemon?.weight} kg.
+              </span>
+            </p>
             <p className="text-sm text-textSecondary">
               Altura:
               <span className="text-base text-textPrimary">
                 {' '}
-                {pokemon.height}
+                {pokemon?.height} m.
               </span>{' '}
-              - Peso:
-              <span className="text-base text-textPrimary">
-                {' '}
-                {pokemon.weight}
-              </span>
             </p>
             <p className="text-sm text-textSecondary  ">
               Formas:
-              {pokemon.forms.map((form) => (
+              {pokemon?.forms.map((form) => (
                 <span
                   key={form.name}
                   className={` ml-1 capitalize
@@ -150,18 +179,18 @@ function Pokemon({ data: pokemon }) {
                         text-textPrimary text-xbases  
                      `}
               >
-                {pokemon.order}
+                {pokemon?.order}
               </span>
             </p>
             <p className="text-sm text-textSecondary  ">
               Habilidades:
-              {pokemon.abilities.map((ability) => (
+              {pokemon?.abilities.map((ability) => (
                 <span
                   key={ability.ability.name}
                   className={` ml-1 capitalize
                         rounded
-                        text-textPrimary text-xbases
-                         p-0.5 px-1 bg-${pokemon.types[0].type.name}/30
+                        text-textPrimary text-sm
+                         p-0.5 px-1 bg-${pokemon?.types[0].type.name}/30
                      `}
                 >
                   {ability.ability.name}
@@ -172,52 +201,99 @@ function Pokemon({ data: pokemon }) {
           </div>
           <div className="flex gap-3 justify-center content-center flex-wrap ">
             <Box
-              color={pokemon.types[0].type.name}
+              color={pokemon?.types[0].type.name}
               title="Experiencia"
               subtitle={pokemon?.base_experience}
               variant={2}
               Icon={GiRank3}
             />
             <Box
-              color={pokemon.types[0].type.name}
+              color={pokemon?.types[0].type.name}
               title="Especie"
-              subtitle={pokemon.species.name}
+              subtitle={pokemon?.species.name}
               Icon={BsPeaceFill}
             />
             <Box
-              color={pokemon.types[0].type.name}
+              color={pokemon?.types[0].type.name}
               title="Tipo"
-              subtitle={pokemon.types[0].type.name}
+              subtitle={pokemon?.types[0].type.name}
               variant={2}
               Icon={BsFillDiagram3Fill}
             />
           </div>
         </div>
       </Section>
-      <Section borderColor={pokemon.types[0].type.name}>
-        <h6 className="text-xl font-bold capitalize mb-4">Estadisticas</h6>
-
-        {pokemon.stats.map((stat) => (
-          <StatBar
-            key={stat.stat}
-            stat={stat}
-            color={pokemon.types[0].type.name}
-          />
+      <Section borderColor={pokemon?.types[0].type.name}>
+        <h6 className="text-xl font-bold capitalize mb-4">Estadisticas Base</h6>
+        <span className="text-right block">Max</span>
+        {pokemon?.stats.map((stat, index) => (
+          <>
+            <StatBar
+              key={stat.stat}
+              stat={stat}
+              color={pokemon?.types[0].type.name}
+            />
+            {index === 2 && <hr className="my-5" />}
+          </>
         ))}
+        <hr className="my-5" />
+        <p className="text-2xl font-normal  capitalize">
+          Total:
+          <span className="text-2xl text-textPrimary font-medium ml-3">
+            {pokemon.stats.reduce(
+              (previousValue, currentValue) =>
+                previousValue + currentValue.base_stat,
+              0,
+            )}
+          </span>
+        </p>
+        <p className="text-sm font-normal text-textSecondary mt-3">
+          Los rangos que se muestran son para un Pokémon de nivel 100: los
+          valores máximos se basan en una naturaleza beneficiosa, 252 EV, 31 IV;
+          los valores mínimos se basan en una naturaleza obstaculizadora, 0 EV,
+          0 IV
+        </p>
       </Section>
-      <Section borderColor={pokemon.types[0].type.name} classes="mb-8">
+      <Section borderColor={pokemon?.types[0].type.name}>
+        <h6 className="text-xl font-bold capitalize">Movimientos</h6>
+        <p className="text-sm text-textSecondary my-5">
+          Un movimiento o ataque (Move en inglés, わざ Acción en japonés) es un
+          esfuerzo de poder que puede ser físico, especial, o de apoyo y que los
+          Pokémon son capaces de aprender y usar a lo largo de su desarrollo,
+          dependiendo principalmente de su tipo y en la mayoría de casos de su
+          fisionomía.
+        </p>
+        <div className="flex flex-wrap gap-1 ">
+          {pokemon?.moves.map((move) => (
+            <span
+              key={move.move.name}
+              className={` capitalize
+                        rounded  border border-${
+                          pokemon?.types[0].type.name || 'grass'
+                        }
+                        text-contrastText text-sm
+                         p-1 px-2 bg-${pokemon?.types[0].type.name}/100
+                     `}
+            >
+              <GiMineExplosion className="inline text-lg mr-1" />
+              {move.move.name}
+            </span>
+          ))}
+        </div>
+      </Section>
+      <Section borderColor={pokemon?.types[0].type.name} classes="mb-8">
         <h6 className="text-xl font-bold capitalize">Imagenes</h6>
-        <div className="w-full flex justify-center content-center flex-wrap gap-4 mt-6">
-          {Object.entries(pokemon.sprites.other)
-            .filter(([key, sprite]) => sprite.front_default)
+        <div className="w-full flex justify-center content-center flex-wrap gap-4 mt-10">
+          {Object.entries(pokemon?.sprites?.other)
+            .filter(([key, sprite]) => sprite?.front_default)
             .map(([key, sprite]) => (
               <PokemonImage
                 key={pokemon}
-                src={sprite.front_default}
+                src={sprite?.front_default}
                 title={key}
               />
             ))}
-          {Object.entries(pokemon.sprites)
+          {Object.entries(pokemon?.sprites)
             .filter(
               ([key, sprite]) =>
                 key !== 'other' && key !== 'versions' && sprite,
@@ -225,31 +301,70 @@ function Pokemon({ data: pokemon }) {
             .map(([key, sprite]) => (
               <PokemonImage key={pokemon} src={sprite} title={key} />
             ))}
-
-          {/* <PokemonImage key={pokemon} id={3} />
-          <PokemonImage key={pokemon} id={3} />
-          <PokemonImage key={pokemon} id={3} />
-          <PokemonImage key={pokemon} id={3} />
-          <PokemonImage key={pokemon} id={3} />
-          <PokemonImage key={pokemon} id={3} />
-          <PokemonImage key={pokemon} id={3} />
-          <PokemonImage key={pokemon} id={3} />
-          <PokemonImage key={pokemon} id={3} /> */}
+          {Object.entries(pokemon?.sprites?.versions).map(([key, version]) =>
+            Object.entries(version)
+              .filter((versionF) => versionF[1].front_default)
+              .map(([keyName, sprite]) => (
+                <PokemonImage
+                  key={keyName}
+                  src={sprite?.front_default}
+                  title={`${key} - ${keyName}`}
+                />
+              )),
+          )}
         </div>
       </Section>
     </div>
   );
 }
 
+const statsValues = {
+  /*  hp: { value: 255, Icon: GiHeartPlus },
+  attack: { value: 255, Icon: GiHeartPlus },
+  defense: { value: 255, Icon: GiHeartPlus },
+  'special-attack': { value: 255, Icon: GiHeartPlus },
+  'special-defense': { value: 255, Icon: GiHeartPlus },
+  speed: { value: 255, Icon: GiHeartPlus }, */
+  hp: { value: 274, Icon: GiHeartPlus },
+  attack: { value: 229, Icon: GiBroadsword },
+  defense: { value: 196, Icon: GiCheckedShield },
+  'special-attack': { value: 218, Icon: GiCrossedSwords },
+  'special-defense': { value: 218, Icon: GiEdgedShield },
+  speed: { value: 306, Icon: GiRunningNinja },
+};
+
 function StatBar({ stat, color }) {
+  const { Icon } = statsValues[stat.stat.name];
+
   return (
-    <div className="flex justify-between">
-      <p className="text-base font-medium text-textSecondary capitalize">
+    <div className="flex justify-between flex-col sm:flex-row mt-2 gap-3 flex-wrap">
+      <p className="text-base font-medium w-[30%] min-w-[180px] capitalize flex flex-nowrap items-center">
+        <Icon className="inline text-xl mr-2" />
         {stat.stat.name}:
-        <span className="text-base text-textPrimary"> {stat.base_stat}</span>{' '}
+        <span className="text-sm text-textSecondary ml-2 flex-grow sm:text-right">
+          {stat.base_stat}
+        </span>
       </p>
-      <div class="w-[50%] bg-gray-300    h-3">
-        <div class={`bg-${color} h-3 `} style={{ width: '45%' }} />
+      <div className="flex-grow flex flex-nowrap items-center min-w-[20%] ">
+        <div className="w-full bg-gray-300   rounded-sm h-4">
+          <div
+            className={`bg-${color} h-4 rounded-sm flex justify-end items-center`}
+            style={{
+              width: `${
+                (stat.base_stat * 100) / statsValues[stat.stat.name].value
+              }%`,
+            }}
+          >
+            <span
+              className={`-mr-4 text-centerml-full px-2 bg-bgPrimary border-2 rounded-sm border-${color} text-md`}
+            >
+              {stat.base_stat}
+            </span>
+          </div>
+        </div>
+        <span className="text-[0.6rem]  font-bold ml-5">
+          {statsValues[stat.stat.name].value}
+        </span>
       </div>
     </div>
   );
@@ -279,7 +394,7 @@ function Box({ Icon, title, subtitle, color, variant = 1 }) {
   return (
     <div
       className={`p-4 ${bgColor} rounded flex flex-col justify-center w-22
-       items-center gap-2 min-w-[150px]`}
+       items-center gap-3 min-w-[160px]`}
     >
       <h6 className={`text-lg font-medium ${textColor} `}>{title}</h6>
       <Icon className={`text-5xl  ${iconColor}`} />
@@ -306,8 +421,11 @@ export const getServerSideProps = async (context) => {
   const { id } = context.query;
   const res = await getPokemon(id);
   const { data } = res;
+  const descriptionRes = await getPokemonSpecieDetail(
+    data.species.url.split('/').at(-2),
+  );
   return {
-    props: { data },
+    props: { data, description: descriptionRes.data },
   };
 };
 
