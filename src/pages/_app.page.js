@@ -2,6 +2,7 @@ import NProgress from 'nprogress';
 import '../styles/globals.css';
 import PageLayout from '@components/PageLayout';
 import Router from 'next/router';
+import ErrorBoundary from '@components/ErrorBoundary';
 
 NProgress.configure({
   minimum: 0.3,
@@ -15,9 +16,11 @@ Router.events.on('routeChangeError', () => NProgress.done());
 
 function MyApp({ Component, pageProps }) {
   return (
-    <PageLayout>
-      <Component {...pageProps} />
-    </PageLayout>
+    <ErrorBoundary FallbackComponent={<h2>Error ...</h2>}>
+      <PageLayout>
+        <Component {...pageProps} />
+      </PageLayout>
+    </ErrorBoundary>
   );
 }
 

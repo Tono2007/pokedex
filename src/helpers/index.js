@@ -1,3 +1,5 @@
+import { FAVORITES_KEY } from '../constants/data';
+
 export const getDataLocal = (key) => {
   try {
     const item = window.localStorage.getItem(key);
@@ -5,6 +7,14 @@ export const getDataLocal = (key) => {
   } catch {
     return '';
   }
+};
+
+export const setLocalFavorites = (favorites) => {
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+};
+export const addLocalFavorite = (favorite) => {
+  const favorites = [...getDataLocal(FAVORITES_KEY), favorite];
+  localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
 };
 
 export const listEmpty = (number) => {

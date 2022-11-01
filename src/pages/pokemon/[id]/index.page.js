@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import {
@@ -15,17 +16,56 @@ import {
   GiRunningNinja,
   GiMineExplosion,
 } from 'react-icons/gi';
+import Button from '@components/Button';
+import { FAVORITES_KEY } from '../../../constants/data';
 import { getPokemon, getPokemonSpecieDetail } from '../../../services/pokemon';
-import { padNumber, capitalize } from '../../../helpers';
+import {
+  padNumber,
+  capitalize,
+  getDataLocal,
+  addLocalFavorite,
+  setLocalFavorites,
+} from '../../../helpers';
 
 import pokeball from '../../../../public/assets/pokeball.svg';
 import pokeball2 from '../../../../public/assets/pokeball2.svg';
 
 function Pokemon({ data: pokemon, description }) {
   console.log(pokemon, description);
+  /* const [isFavorite, setIsFavorite] = useState(() =>
+    Boolean(
+      getDataLocal(FAVORITES_KEY).find((pokeId) => pokeId === pokemon.id),
+    ),
+  ); */
+  const [favorites, setFavorites] = useState();
+  const [isFavorite, setIsFavorite] = useState();
+
+  useEffect(() => {
+    setFavorites(getDataLocal(FAVORITES_KEY) || []);
+  }, []);
+
+  /*   const isFavorite = Boolean(favorites.find((pokeId) => pokeId === pokemon.id)); */
+  useEffect(() => {
+    if (favorites) {
+      setLocalFavorites(favorites);
+      setIsFavorite(Boolean(favorites.find((pokeId) => pokeId === pokemon.id)));
+    }
+  }, [favorites, pokemon.id]);
+
+  const addToFavorites = () => {
+    console.log('add');
+    setFavorites((actualFavorites) => [...actualFavorites, pokemon.id]);
+  };
+  const deleteFromFavorites = () => {
+    const newFavorites = favorites.filter(
+      (favorite) => favorite !== pokemon.id,
+    );
+    setFavorites(newFavorites);
+  };
+
   return (
     <div
-      className={`bg-${pokemon.types[0].type.name}/80 
+      className={`bg-${pokemon?.types[0]?.type?.name}/80 
        min-h-screen flex flex-col gap-16
        overflow-hidden   
 
@@ -77,6 +117,11 @@ function Pokemon({ data: pokemon, description }) {
                     (flavor) => flavor.language.name === 'es',
                   )?.genus
                 }
+                {isFavorite ? (
+                  <AiFillHeart className=" inline ml-2 text-md text-red-600" />
+                ) : (
+                  <AiOutlineHeart className=" inline ml-2 text-md text-red-600" />
+                )}
               </span>
             </h1>
 
@@ -92,10 +137,27 @@ function Pokemon({ data: pokemon, description }) {
                 </span>
               ))}
             </div>
-
-            <button type="button">
-              Agregar a favoritos <AiFillHeart />
-            </button>
+            {isFavorite ? (
+              <Button
+                color="primary"
+                size="small"
+                classes="mt-5"
+                onClick={deleteFromFavorites}
+              >
+                <AiFillHeart className=" inline mr-2 text-xl text-red-600" />
+                Eliminar de favoritos
+              </Button>
+            ) : (
+              <Button
+                color="primary"
+                size="small"
+                classes="mt-5"
+                onClick={addToFavorites}
+              >
+                <AiOutlineHeart className=" inline mr-2 text-xl text-red-600" />
+                Agregar a favoritos
+              </Button>
+            )}
           </div>
           <div className="relative z-10">
             <div
@@ -418,15 +480,21 @@ function Section({ children, borderColor, classes }) {
 }
 
 export const getServerSideProps = async (context) => {
-  const { id } = context.query;
-  const res = await getPokemon(id);
-  const { data } = res;
-  const descriptionRes = await getPokemonSpecieDetail(
-    data.species.url.split('/').at(-2),
-  );
-  return {
-    props: { data, description: descriptionRes.data },
-  };
+  try {
+    const { id } = context.query;
+    const res = await getPokemon(id);
+    const { data } = res;
+
+    const descriptionRes = await getPokemonSpecieDetail(
+      data.species.url.split('/').at(-2),
+    );
+    return {
+      props: { data, description: descriptionRes.data },
+    };
+  } catch (error) {
+    console.log(error);
+    return { notFound: true };
+  }
 };
 
 export default Pokemon;
