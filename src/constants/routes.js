@@ -4,7 +4,6 @@ const ROUTES = [
   { path: '/generations', name: 'Generaciones' },
   { path: '/types', name: 'Tipos' },
   { path: '/favorites', name: 'Favoritos' },
-  { path: '/', name: 'Buscar' },
 ];
 
 export default ROUTES;

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import routes from '../../constants/routes';
 
 import pokeball from '../../../public/assets/pokeball.png';
+import SearchPokemon from './SearchPokemon';
 
 function NavLink({ href, title, active }) {
   const activeStyle =
@@ -46,8 +47,8 @@ function Navbar({ location }) {
                 active={location === route.path}
               />
             ))}
-            <li className={`relative ${''}`}>
-              <input placeholder="Buscar pokemons" />
+            <li>
+              <SearchPokemon />
             </li>
           </ul>
         </div>
