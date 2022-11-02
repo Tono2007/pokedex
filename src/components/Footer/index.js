@@ -2,7 +2,7 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer className="bg-BURed text-center py-1">
+    <footer className="bg-BURed/90 text-center py-1">
       <p className="text-contrastText text-sm">
         💻 - Construido por
         <a

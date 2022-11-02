@@ -1,11 +1,11 @@
-import React from 'react';
+import { createElement } from 'react';
 
 const colors = {
   default: {
     color: 'DBlue',
     hoverColor: 'CBlue',
     textColor: 'contrastText',
-    styles: '',
+    styles: 's',
   },
   primary: {
     color: 'DBlue',
@@ -28,20 +28,41 @@ const sizes = {
 };
 
 function Button(props) {
-  let { color = 'primary' } = props;
-  const { children, variant, size = 'medium', classes, ...rest } = props;
+  const { color = 'primary' } = props;
+  const {
+    children,
+    variant,
+    size = 'medium',
+    classes,
+    component,
+    ...rest
+  } = props;
 
-  if (!colors[color]) color = 'default';
+  // if (!colors[color]) color = 'default';
 
-  const { hoverColor, textColor, color: btnColor } = colors[color];
+  const {
+    hoverColor,
+    textColor,
+    color: btnColor,
+  } = colors[color] || colors.default;
+  const { style: sizeStyle } = sizes[size] || sizes.medium;
 
-  const style = ` bg-${btnColor} text-${textColor}
+  const conditionalStyle = ` bg-${btnColor} text-${textColor}
   hover:bg-${hoverColor}
    focus:bg-${hoverColor} active:bg-${hoverColor}/70  ${classes}
-   ${sizes[size]?.style || sizes.medium.style}
+   ${sizeStyle}
    `;
+  const style = `inline-block hover:cursor-pointer
+  leading-tight uppercase rounded shadow-md  hover:shadow-lg
+  focus:shadow-lg focus:outline-none focus:ring-0 
+  active:shadow-lg transition duration-150 ease-in-out ${conditionalStyle}`;
 
-  return (
+  const container = component ?? 'button';
+  console.log(container);
+
+  return createElement(container, { className: style, ...rest }, children);
+
+  /*   return (
     <button
       type="button"
       className={`inline-block 
@@ -53,6 +74,7 @@ function Button(props) {
       {children}
     </button>
   );
+ */
 }
 
 export default Button;
