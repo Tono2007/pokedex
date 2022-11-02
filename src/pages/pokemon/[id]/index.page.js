@@ -28,6 +28,7 @@ import {
 } from '../../../helpers';
 
 import dataSeo from '../../../constants/dataSeo';
+import { POKEMON_PAGE } from '../../../constants/routes';
 import GenerateHeadPageSEO from '../../../helpers/seoPerPage';
 import pokeball2 from '../../../../public/assets/pokeball2.svg';
 
@@ -73,8 +74,8 @@ function Pokemon({ data: pokemon, description }) {
        `}
     >
       <GenerateHeadPageSEO
-        title={`${dataSeo.pokemonPage.title} | ${pokemon.name}`}
-        descriptionPage={dataSeo.pokemonPage.description}
+        title={`${dataSeo[POKEMON_PAGE].title} | ${pokemon.name}`}
+        descriptionPage={dataSeo[POKEMON_PAGE].description}
       />
       <header
         className={`relative       

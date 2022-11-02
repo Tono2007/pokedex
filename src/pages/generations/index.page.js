@@ -3,14 +3,15 @@ import { getGenerations, getGenerationDetails } from '../../services/pokemon';
 import generationsData from '../../constants/generationsData';
 import dataSeo from '../../constants/dataSeo';
 import GenerateHeadPageSEO from '../../helpers/seoPerPage';
+import { GENERATIONS_PAGE } from '../../constants/routes';
 
 function Generations({ data, generationsDetails }) {
   console.log(data);
   return (
     <section className="container">
       <GenerateHeadPageSEO
-        title={dataSeo.generationsPage.title}
-        descriptionPage={dataSeo.generationsPage.description}
+        title={dataSeo[GENERATIONS_PAGE].title}
+        descriptionPage={dataSeo[GENERATIONS_PAGE].description}
       />
       {/* {pokemons.length > 0 && (
        

@@ -5,6 +5,7 @@ import dataSeo from '../../constants/dataSeo';
 import GenerateHeadPageSEO from '../../helpers/seoPerPage';
 import { getPokemons } from '../../services/pokemon';
 import { PAGE_LIMIT } from '../../constants/data';
+import { POKEMONS_PAGE } from '../../constants/routes';
 
 function Pokemons(props) {
   const { data } = props;
@@ -34,8 +35,8 @@ function Pokemons(props) {
   return (
     <section className="container">
       <GenerateHeadPageSEO
-        title={dataSeo.pokedexPage.title}
-        descriptionPage={dataSeo.pokedexPage.description}
+        title={dataSeo[POKEMONS_PAGE].title}
+        descriptionPage={dataSeo[POKEMONS_PAGE].description}
       />
       {/* {pokemons.length > 0 && (
        

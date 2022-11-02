@@ -34,6 +34,10 @@ export function capitalize(str) {
   return str.replace(/[-_]/g, ' ');
 }
 
+export function pokemonPath(id) {
+  return `/pokemon/${id}`;
+}
+
 export function getPokemonDefaultImg(sprites) {
   return (
     sprites?.other?.dream_world?.front_default ||

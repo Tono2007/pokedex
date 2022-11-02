@@ -2,10 +2,24 @@ import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { HiMenu } from 'react-icons/hi';
-import routes from '../../constants/routes';
+import ROUTES, {
+  HOME_PAGE,
+  POKEMONS_PAGE,
+  GENERATIONS_PAGE,
+  TYPES_PAGE,
+  FAVORITES_PAGE,
+} from '../../constants/routes';
 
 import pokeball from '../../../public/assets/pokeball.png';
 import SearchPokemon from '../SearchPokemon';
+
+const navbarRoutes = [
+  HOME_PAGE,
+  POKEMONS_PAGE,
+  GENERATIONS_PAGE,
+  TYPES_PAGE,
+  FAVORITES_PAGE,
+];
 
 function NavLink({ href, title, active }) {
   const activeStyle =
@@ -62,12 +76,12 @@ function Navbar({ location }) {
 
         <div>
           <ul className="lg:h-14 flex flex-col lg:flex-row flex-wrap">
-            {routes.map((route, index) => (
+            {navbarRoutes.map((route, index) => (
               <NavLink
-                key={route.name}
-                title={route.name}
-                href={route.path}
-                active={location === route.path}
+                key={route}
+                title={ROUTES[route].name}
+                href={ROUTES[route].path}
+                active={location === ROUTES[route].path}
               />
             ))}
             <li>

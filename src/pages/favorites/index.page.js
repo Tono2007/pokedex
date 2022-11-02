@@ -4,6 +4,7 @@ import PokemonCard from '@components/PokemonCard';
 import { getDataLocal } from '../../helpers';
 import { FAVORITES_KEY } from '../../constants/data';
 import dataSeo from '../../constants/dataSeo';
+import { FAVORITES_PAGE } from '../../constants/routes';
 import GenerateHeadPageSEO from '../../helpers/seoPerPage';
 
 function Favorites() {
@@ -16,8 +17,8 @@ function Favorites() {
   return (
     <section className="container">
       <GenerateHeadPageSEO
-        title={dataSeo.favoritesPage.title}
-        descriptionPage={dataSeo.favoritesPage.description}
+        title={dataSeo[FAVORITES_PAGE].title}
+        descriptionPage={dataSeo[FAVORITES_PAGE].description}
       />
       <PageHeader
         title="Favoritos"

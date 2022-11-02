@@ -2,6 +2,7 @@ import Image from 'next/image';
 import PokemonCard from '@components/PokemonCard';
 import { getPokemonTypes, getTypeDetails } from '../../services/pokemon';
 import dataSeo from '../../constants/dataSeo';
+import { TYPES_PAGE } from '../../constants/routes';
 import GenerateHeadPageSEO from '../../helpers/seoPerPage';
 
 function Types(props) {
@@ -10,8 +11,8 @@ function Types(props) {
   return (
     <section className="container">
       <GenerateHeadPageSEO
-        title={dataSeo.typesPage.title}
-        descriptionPage={dataSeo.typesPage.description}
+        title={dataSeo[TYPES_PAGE].title}
+        descriptionPage={dataSeo[TYPES_PAGE].description}
       />
       {/* {pokemons.length > 0 && (
        

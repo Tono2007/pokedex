@@ -1,25 +1,34 @@
+import {
+  HOME_PAGE,
+  POKEMONS_PAGE,
+  GENERATIONS_PAGE,
+  TYPES_PAGE,
+  FAVORITES_PAGE,
+  POKEMON_PAGE,
+} from './routes';
+
 const DATA_SEO = {
-  homePage: {
+  [HOME_PAGE]: {
     title: 'Pokemon | Pokedex APP',
     description: 'Applicación para buscar y encontrar pokemons',
   },
-  pokedexPage: {
+  [POKEMONS_PAGE]: {
     title: 'Pokedex',
     description: 'encuentra pokemons',
   },
-  pokemonPage: {
+  [POKEMON_PAGE]: {
     title: 'Perfil pokemon',
     description: 'Encuentra detalles de tu pokemon',
   },
-  generationsPage: {
+  [GENERATIONS_PAGE]: {
     title: 'Generaciones de pokemones',
     description: 'Encuentra detalles de cada generación de pokemones',
   },
-  typesPage: {
+  [TYPES_PAGE]: {
     title: 'Tipos de pokemones',
     description: 'Encuentra detalles de cada tipo de pokemon',
   },
-  favoritesPage: {
+  [FAVORITES_PAGE]: {
     title: 'Tus Pokemones Favoritos',
     description: 'Encuentra tus pokemones favoritos',
   },

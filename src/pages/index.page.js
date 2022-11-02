@@ -16,6 +16,7 @@ import {
 import SearchPokemon from '@components/SearchPokemon';
 import PokemonCard from '@components/PokemonCard';
 import Button from '@components/Button';
+import { HOME_PAGE } from '../constants/routes';
 import dataSeo from '../constants/dataSeo';
 import GenerateHeadPageSEO from '../helpers/seoPerPage';
 import pokeball from '../../public/assets/pokemon-logo.svg';
@@ -26,8 +27,8 @@ export default function Home() {
   return (
     <>
       <GenerateHeadPageSEO
-        title={dataSeo.homePage.title}
-        descriptionPage={dataSeo.homePage.description}
+        title={dataSeo[HOME_PAGE].title}
+        descriptionPage={dataSeo[HOME_PAGE].description}
       />
       <Hero />
       <PokemonsSection />
