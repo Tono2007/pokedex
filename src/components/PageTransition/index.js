@@ -3,27 +3,10 @@ import {
   Transition as ReactTransition,
 } from 'react-transition-group';
 
-const TIMEOUT = 500;
+import { getTransitionStyles } from '@helpers/style';
 
-const getTransitionStyles = {
-  entering: {
-    position: `absolute`,
-    opacity: 0,
-    transform: `translateY(-50px)`,
-  },
-  entered: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
-    opacity: 1,
-    transform: `translateY(0px)`,
-  },
-  exiting: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${
-      TIMEOUT / 3
-    }ms ease-in-out`,
-    opacity: 0,
-    transform: `translateY(-50px)`,
-  },
-};
+const TIMEOUT = 500;
+const transitionStyles = getTransitionStyles(TIMEOUT);
 function PageTransition({ children, location }) {
   return (
     <TransitionGroup style={{ position: 'relative' }}>
@@ -37,7 +20,7 @@ function PageTransition({ children, location }) {
         {(status) => (
           <div
             style={{
-              ...getTransitionStyles[status],
+              ...transitionStyles[status],
             }}
           >
             {children}

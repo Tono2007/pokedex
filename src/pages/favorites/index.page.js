@@ -7,7 +7,7 @@ import { FAVORITES_KEY } from '@constants/data';
 import { FAVORITES_PAGE } from '@constants/routes';
 import dataSeo from '@constants/dataSeo';
 
-import { getDataLocal } from '@helpers';
+import { getDataLocal } from '@helpers/index';
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
 
 function Favorites() {

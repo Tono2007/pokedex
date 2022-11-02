@@ -19,33 +19,18 @@ import PokemonCard from '@components/PokemonCard';
 import Button from '@components/Button';
 
 import { HOME_PAGE } from '@constants/routes';
+import { IMG_PATH_HOME } from '@constants/data';
 import dataSeo from '@constants/dataSeo';
+
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
+import { getTransitionStyles } from '@helpers/style';
 
 import pokeball from '@assets/pokemon-logo.svg';
 import pokeball2 from '@assets/pokeball2.svg';
 import pokeball1 from '@assets/pokeball.svg';
 
 const TIMEOUT = 500;
-const getTransitionStyles = {
-  entering: {
-    position: `absolute`,
-    opacity: 0,
-    transform: `translateY(-50px)`,
-  },
-  entered: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
-    opacity: 1,
-    transform: `translateY(0px)`,
-  },
-  exiting: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${
-      TIMEOUT / 3
-    }ms ease-in-out`,
-    opacity: 0,
-    transform: `translateY(-50px)`,
-  },
-};
+const transitionStyles = getTransitionStyles(TIMEOUT);
 
 export default function Home() {
   return (
@@ -363,7 +348,7 @@ function PokemonsSection() {
               {(status) => (
                 <div
                   style={{
-                    ...getTransitionStyles[status],
+                    ...transitionStyles[status],
                   }}
                 >
                   <PokemonSlideCard id={pokemonsSlide[activePokemon].id} />
@@ -400,7 +385,7 @@ function PokemonSlideCard({ id }) {
        */}
       <div className=" block h-full w-[100%] ">
         <Image
-          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`}
+          src={`${IMG_PATH_HOME}/${id}.png`}
           alt="pokemon back"
           height="500px"
           width="500px"

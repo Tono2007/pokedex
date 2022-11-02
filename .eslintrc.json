@@ -23,7 +23,6 @@
     "no-use-before-define": "warn",
     "jsx-a11y/anchor-is-valid": 0,
     "react/jsx-props-no-spreading": 0,
-    "consistent-return": 0,
     "jsx-a11y/click-events-have-key-events": "off",
     "no-console": "off",
     "react/no-unstable-nested-components": "off",

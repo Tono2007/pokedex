@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 
 import { getPokemon } from '@services/pokemon';
 
-import { padNumber } from '@helpers/index';
+import { padNumber, getPokemonDefaultImg } from '@helpers/index';
 
 import pokeball2 from '@assets/pokeball2.svg';
 
@@ -88,12 +88,7 @@ function PokemonCard({ pokemonIdName }) {
           </div>
 
           <Image
-            src={
-              pokemon.sprites?.other?.dream_world?.front_default ||
-              pokemon.sprites?.other?.['official-artwork']?.front_default ||
-              pokemon.sprites?.front_default ||
-              ''
-            }
+            src={getPokemonDefaultImg(pokemon.sprites)}
             alt="pokemon back"
             objectFit="contain"
             width="150"

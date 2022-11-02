@@ -30,6 +30,7 @@ import {
   capitalize,
   getDataLocal,
   setLocalFavorites,
+  getPokemonDefaultImg,
 } from '@helpers/index';
 
 import { getPokemon, getPokemonSpecieDetail } from '@services/pokemon';
@@ -207,12 +208,7 @@ function Pokemon({ data: pokemon, description }) {
                 })}
               </p>
               <Image
-                src={
-                  pokemon?.sprites?.other?.['official-artwork']
-                    ?.front_default ||
-                  pokemon?.sprites?.front_default ||
-                  ''
-                }
+                src={getPokemonDefaultImg(pokemon.sprites)}
                 alt="pokemon back"
                 height="250px"
                 width="250px"

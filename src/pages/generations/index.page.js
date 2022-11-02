@@ -6,6 +6,7 @@ import { GENERATIONS_PAGE } from '@constants/routes';
 import generationsData from '@constants/generationsData';
 import dataSeo from '@constants/dataSeo';
 
+import { IMG_PATH_HOME } from '@constants/data';
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
 
 function Generations({ data, generationsDetails }) {
@@ -125,9 +126,9 @@ function Generation({ generation }) {
 
 function PokemonImage({ id }) {
   return (
-    <div className=" block h-auto w-[30%] md:w-[20%] -ml-10">
+    <div className=" block h-auto w-[30%] md:w-[25%] -ml-8 md:-ml-16">
       <Image
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
+        src={`${IMG_PATH_HOME}/${id}.png`}
         alt="pokemon back"
         height="200px"
         width="200px"
