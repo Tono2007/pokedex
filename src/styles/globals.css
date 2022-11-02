@@ -25,6 +25,9 @@
     min-height: 100vh;
   }
 
+  .text-stroke-white {
+    -webkit-text-stroke: 1px white;
+  }
   @media screen and (min-width: 400px) {
     /* Tamaño del scroll */
     ::-webkit-scrollbar {
@@ -55,4 +58,22 @@
   }
 }
 @layer utilities {
+  .clip-hero-layer2 {
+    clip-path: polygon(60% 0, 100% 0, 100% 100%, 50% 100%);
+  }
+  .clip-hero-layer1 {
+    clip-path: polygon(77% 0, 100% 0, 100% 100%, 37% 100%);
+  }
+  .clip-hero-layer3 {
+    clip-path: polygon(50% 0, 100% 0, 100% 100%, 80% 100%);
+  }
+  .clip-hero-layer4 {
+    clip-path: polygon(100% 85%, 0% 100%, 100% 100%);
+  }
+  .clip-bg-pokemon {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+  }
+  .clip-bg-section {
+    clip-path: polygon(0 15%, 100% 0, 100% 87%, 0 100%);
+  }
 }

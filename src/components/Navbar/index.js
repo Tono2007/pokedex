@@ -3,7 +3,7 @@ import Link from 'next/link';
 import routes from '../../constants/routes';
 
 import pokeball from '../../../public/assets/pokeball.png';
-import SearchPokemon from './SearchPokemon';
+import SearchPokemon from '../SearchPokemon';
 
 function NavLink({ href, title, active }) {
   const activeStyle =

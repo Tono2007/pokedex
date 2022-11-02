@@ -76,6 +76,12 @@ function Pokemon({ data: pokemon, description }) {
 
          `}
       >
+        <h2
+          className=" absolute -top-5 right-12 text-transparent text-stroke-white text-[7rem]
+            font-extrabold opacity-70 capitalize"
+        >
+          {pokemon?.name}
+        </h2>
         <div
           className={`relative flex justify-around content-center   items-center
            container w-[100%]  mt-20
@@ -103,9 +109,13 @@ function Pokemon({ data: pokemon, description }) {
               width="600px"
             />
           </div>
+
           <div className="relative">
             <span className="text-sm font-bold">#{padNumber(pokemon?.id)}</span>
-            <h1 className="text-6xl font-extrabold  capitalize text-contrastText">
+            <h1
+              className="text-7xl font-bold  capitalize text-contrastText 
+            drop-shadow-lg shadow-black"
+            >
               {pokemon?.name}
               <span
                 className={`italic text-xs font-medium pl-1 border-b-2 border-${
@@ -170,10 +180,21 @@ function Pokemon({ data: pokemon, description }) {
            before:translate-x-[50%]  before:translate-y-[65%]"
             >
               <p className="text-contrastText absolute -bottom-6 text-xs w-full text-center">
-                Peso: {pokemon.weight} kg.
+                Peso:{' '}
+                {(pokemon.weight / 10).toLocaleString('es', {
+                  style: 'unit',
+                  unit: 'kilogram',
+                  unitDisplay: 'short',
+                })}
               </p>
-              <p className="text-contrastText absolute top-20  -left-12 -rotate-90 text-xs   text-center">
-                Altura: {pokemon.height} m.
+              <p className="text-contrastText absolute top-20  -left-14 -rotate-90 text-xs   text-center">
+                Altura:{' '}
+                {(pokemon.height / 10).toLocaleString('es', {
+                  minimumFractionDigits: 1,
+                  style: 'unit',
+                  unit: 'meter',
+                  unitDisplay: 'short',
+                })}
               </p>
               <Image
                 src={
@@ -209,15 +230,24 @@ function Pokemon({ data: pokemon, description }) {
               Peso:
               <span className="text-base text-textPrimary">
                 {' '}
-                {pokemon?.weight} kg.
+                {(pokemon.weight / 10).toLocaleString('es', {
+                  style: 'unit',
+                  unit: 'kilogram',
+                  unitDisplay: 'short',
+                })}
               </span>
             </p>
             <p className="text-sm text-textSecondary">
               Altura:
               <span className="text-base text-textPrimary">
                 {' '}
-                {pokemon?.height} m.
-              </span>{' '}
+                {(pokemon.height / 10).toLocaleString('es', {
+                  minimumFractionDigits: 1,
+                  style: 'unit',
+                  unit: 'meter',
+                  unitDisplay: 'short',
+                })}
+              </span>
             </p>
             <p className="text-sm text-textSecondary  ">
               Formas:
@@ -301,7 +331,7 @@ function Pokemon({ data: pokemon, description }) {
         <hr className="my-5" />
         <p className="text-2xl font-normal  capitalize">
           Total:
-          <span className="text-2xl text-textPrimary font-medium ml-3">
+          <span className="text-2xl text-textPrimary font-medium ml-3 ">
             {pokemon.stats.reduce(
               (previousValue, currentValue) =>
                 previousValue + currentValue.base_stat,
@@ -401,7 +431,7 @@ function StatBar({ stat, color }) {
   return (
     <div className="flex justify-between flex-col sm:flex-row mt-2 gap-3 flex-wrap">
       <p className="text-base font-medium w-[30%] min-w-[180px] capitalize flex flex-nowrap items-center">
-        <Icon className="inline text-xl mr-2" />
+        <Icon className={`inline text-xl mr-2 text-${color}`} />
         {stat.stat.name}:
         <span className="text-sm text-textSecondary ml-2 flex-grow sm:text-right">
           {stat.base_stat}
@@ -472,7 +502,7 @@ function Section({ children, borderColor, classes }) {
     <section
       className={`container border-l-8 border-${
         borderColor || 'grass'
-      }  p-8 rounded bg-bgTertiary shadow-lg ${classes}`}
+      }  p-8 rounded bg-bgPrimary shadow-lg ${classes}`}
     >
       {children}
     </section>

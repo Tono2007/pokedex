@@ -9,11 +9,15 @@ function SearchPokemon() {
     const { value } = e.target.pokemonName;
     if (value === '') return;
     e.target.pokemonName.value = '';
-    router.push(`/pokemon/${value}`);
+
+    router.push(`/pokemon/${value.toLowerCase()}`);
   };
 
   return (
-    <form className="h-full flex items-center" onSubmit={handleSearch}>
+    <form
+      className="h-full flex items-center  mx-auto  w-fit "
+      onSubmit={handleSearch}
+    >
       <div class="relative ml-4">
         <button
           title="Buscar"
@@ -23,9 +27,10 @@ function SearchPokemon() {
           <AiOutlineSearch className="text-contrastText text-lg" />
         </button>
         <input
+          required
           name="pokemonName"
-          placeholder="Buscar pokemons"
-          className="pl-10 p-1  bg-bgPrimary/30 placeholder:text-contrastText/50  max-w-[190px]
+          placeholder="Buscar pokemon"
+          className="pl-10 p-1  bg-bgPrimary/30 placeholder:text-contrastText/50 
           border border-transparent rounded 
           text-contrastText
            focus:bg-bgPrimary/10 text-sm focus:border-GoldenYellow
