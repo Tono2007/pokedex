@@ -16,9 +16,8 @@ import {
 import SearchPokemon from '@components/SearchPokemon';
 import PokemonCard from '@components/PokemonCard';
 import Button from '@components/Button';
-import Pokemons from './pokemons/index.page';
+import dataSeo from '../constants/dataSeo';
 import GenerateHeadPageSEO from '../helpers/seoPerPage';
-import styles from '../styles/Home.module.css';
 import pokeball from '../../public/assets/pokemon-logo.svg';
 import pokeball2 from '../../public/assets/pokeball2.svg';
 import pokeball1 from '../../public/assets/pokeball.svg';
@@ -26,7 +25,10 @@ import pokeball1 from '../../public/assets/pokeball.svg';
 export default function Home() {
   return (
     <>
-      <GenerateHeadPageSEO title="fdf" descriptionPage="dfd" />
+      <GenerateHeadPageSEO
+        title={dataSeo.homePage.title}
+        descriptionPage={dataSeo.homePage.description}
+      />
       <Hero />
       <PokemonsSection />
       <section className="bg-white py-40 container">

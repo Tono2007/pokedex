@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import PokemonCard from '@components/PokemonCard';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import dataSeo from '../../constants/dataSeo';
 import GenerateHeadPageSEO from '../../helpers/seoPerPage';
 import { getPokemons } from '../../services/pokemon';
 import { PAGE_LIMIT } from '../../constants/data';
@@ -33,8 +34,8 @@ function Pokemons(props) {
   return (
     <section className="container">
       <GenerateHeadPageSEO
-        title="Pokemones"
-        descriptionPage="Listado de pokemones"
+        title={dataSeo.pokedexPage.title}
+        descriptionPage={dataSeo.pokedexPage.description}
       />
       {/* {pokemons.length > 0 && (
        

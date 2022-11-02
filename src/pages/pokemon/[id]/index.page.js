@@ -27,7 +27,8 @@ import {
   setLocalFavorites,
 } from '../../../helpers';
 
-import pokeball from '../../../../public/assets/pokeball.svg';
+import dataSeo from '../../../constants/dataSeo';
+import GenerateHeadPageSEO from '../../../helpers/seoPerPage';
 import pokeball2 from '../../../../public/assets/pokeball2.svg';
 
 function Pokemon({ data: pokemon, description }) {
@@ -71,6 +72,10 @@ function Pokemon({ data: pokemon, description }) {
 
        `}
     >
+      <GenerateHeadPageSEO
+        title={`${dataSeo.pokemonPage.title} | ${pokemon.name}`}
+        descriptionPage={dataSeo.pokemonPage.description}
+      />
       <header
         className={`relative       
 

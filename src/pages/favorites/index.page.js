@@ -3,6 +3,8 @@ import PageHeader from '@components/PageHeader';
 import PokemonCard from '@components/PokemonCard';
 import { getDataLocal } from '../../helpers';
 import { FAVORITES_KEY } from '../../constants/data';
+import dataSeo from '../../constants/dataSeo';
+import GenerateHeadPageSEO from '../../helpers/seoPerPage';
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);
@@ -13,6 +15,10 @@ function Favorites() {
 
   return (
     <section className="container">
+      <GenerateHeadPageSEO
+        title={dataSeo.favoritesPage.title}
+        descriptionPage={dataSeo.favoritesPage.description}
+      />
       <PageHeader
         title="Favoritos"
         subtitle="Guarda tus pokemones favoritos, visitalos en cualquier momento."

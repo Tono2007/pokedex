@@ -1,15 +1,16 @@
 import Image from 'next/image';
-import GenerateHeadPageSEO from '../../helpers/seoPerPage';
 import { getGenerations, getGenerationDetails } from '../../services/pokemon';
 import generationsData from '../../constants/generationsData';
+import dataSeo from '../../constants/dataSeo';
+import GenerateHeadPageSEO from '../../helpers/seoPerPage';
 
 function Generations({ data, generationsDetails }) {
   console.log(data);
   return (
     <section className="container">
       <GenerateHeadPageSEO
-        title="Pokemones"
-        descriptionPage="Listado de pokemones"
+        title={dataSeo.generationsPage.title}
+        descriptionPage={dataSeo.generationsPage.description}
       />
       {/* {pokemons.length > 0 && (
        
