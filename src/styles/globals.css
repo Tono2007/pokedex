@@ -28,6 +28,11 @@
   .text-stroke-white {
     -webkit-text-stroke: 1px white;
   }
+
+  .transition-All-Custom {
+    transition: all 2s;
+  }
+
   @media screen and (min-width: 400px) {
     /* Tamaño del scroll */
     ::-webkit-scrollbar {

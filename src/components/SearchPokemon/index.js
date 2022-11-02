@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { AiOutlineSearch } from 'react-icons/ai';
 
-function SearchPokemon() {
+function SearchPokemon({ classes }) {
   const router = useRouter();
 
   const handleSearch = (e) => {
@@ -15,7 +15,7 @@ function SearchPokemon() {
 
   return (
     <form
-      className="h-full flex items-center  mx-auto  w-fit "
+      className={`h-full flex items-center  mx-auto  w-fit ${classes}`}
       onSubmit={handleSearch}
     >
       <div class="relative ml-4">

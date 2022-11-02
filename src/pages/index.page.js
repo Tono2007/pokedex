@@ -29,16 +29,16 @@ export default function Home() {
       <GenerateHeadPageSEO title="fdf" descriptionPage="dfd" />
       <Hero />
       <PokemonsSection />
-      <section className="bg-white p-40">
+      <section className="bg-white py-40 container">
         <div className="container   flex flex-col gap-7 items-center text-center">
           <h1
-            className=" text-4xl font-bold  bg-clip-text
+            className="text-3xl lg:text-4xl font-bold  bg-clip-text
          text-transparent bg-gradient-to-r from-CBlue to-BURed"
           >
             Descubre y recolecta pokemones extraodinarios
           </h1>
           <h2
-            className=" text-4xl font-bold  bg-clip-text
+            className="text-3xl lg:text-4xl font-bold  bg-clip-text
          text-transparent bg-gradient-to-r from-CBlue to-BURed"
           >
             Aqui podras encontrar todos lo pokemones
@@ -61,10 +61,10 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <section className="bg-black p-60 clip-bg-section ">
-        <div className="container text-center flex flex-col gap-10 items-center">
+      <section className="bg-black py-60 clip-bg-section  ">
+        <div className="container  text-center flex flex-col gap-10 items-center">
           <h1
-            className=" text-4xl font-extrabold  bg-clip-text
+            className="text-3xl lg:text-4xl  font-extrabold  bg-clip-text
          text-transparent bg-gradient-to-r from-CBlue to-BURed"
           >
             Descubre y recolecta pokemones extraodinarios
@@ -72,7 +72,7 @@ export default function Home() {
 
           <p className="text-md text-contrastText ">
             Busca por nombre o utilizando el numero nacional... <br />
-            que pokemon estas buscando?
+            ¿qué pokemon estas buscando?
           </p>
           <span
             className="text-xl bg-clip-text block
@@ -133,7 +133,7 @@ function Hero() {
     );
   }
   return (
-    <section className="relative min-h-[50vh] h-full overflow-hidden">
+    <section className="relative min-h-[50vh] h-full overflow-hidden ">
       <div className="absolute bg-gradient-to-r from-BURed to-CBlue  clip-hero-layer1 h-full w-full" />
       <div className="absolute bg-gradient-to-r from-BURed to-CBlue  clip-hero-layer2 h-full w-full" />
       <div
@@ -161,7 +161,7 @@ function Hero() {
         />
       </div>
       <header
-        className="container  relative grid grid-cols-1 sm:grid-cols-2 h-full 
+        className="container  relative grid grid-cols-1 lg:grid-cols-2 h-full 
  auto-rows-auto gap-7 "
       >
         <div className="flex flex-col gap-8 h-full  justify-center py-[10%]">
@@ -172,8 +172,9 @@ function Hero() {
             <Image src={pokeball} alt="Logo" width="100" height="100" />
           </div>
           <h1
-            className=" text-5xl font-extrabold  bg-clip-text
- text-transparent bg-gradient-to-r from-CBlue to-BURed leading-[4rem]"
+            className="text-4xl  md:text-5xl font-extrabold  bg-clip-text
+ text-transparent 
+ bg-gradient-to-r from-CBlue to-GoldenYellow lg:to-BURed md:leading-[4rem]"
           >
             Descubre y recolecta pokemones extraodinarios
           </h1>
@@ -184,7 +185,7 @@ function Hero() {
             ■ ■ ■
           </span>
           <div>
-            <p className="text-sm text-textSecondary w-[70%] ">
+            <p className="text-sm text-textSecondary lg:w-[70%] ">
               Pokemon, tambien conocidos como monstruos de bolsillo en Japon, es
               una franquicia multimedia manejada por la compañia Pokemon,
               compañiafundada por Nintendo.
@@ -205,7 +206,7 @@ function Hero() {
             </Button>
           </Link>
         </div>
-        <div className="flex flex-col gap-8 h-full  justify-center items-end py-[10%]">
+        <div className="flex lg:flex-col gap-8 h-full  flex-wrap justify-center items-end py-[10%]">
           <SectionBox
             color="grass"
             title="Pokedex"
@@ -323,7 +324,7 @@ function PokemonsSection() {
           </p>
         </div>
 
-        <div className="text-right">
+        <div className="text-right min-h-[500px]">
           <TransitionGroup style={{ position: 'relative' }}>
             <ReactTransition
               key={activePokemon}

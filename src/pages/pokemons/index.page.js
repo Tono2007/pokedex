@@ -49,7 +49,7 @@ function Pokemons(props) {
 
       <InfiniteScroll
         className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3
-         lg:grid-cols-4  xl:grid-cols-4  auto-rows-auto gap-7 mb-5  pt-10"
+         lg:grid-cols-4  xl:grid-cols-4  gap-7 mb-5  pt-10"
         dataLength={pokemons.length}
         next={fetchPokemons}
         hasMore={hasMore}
@@ -67,7 +67,7 @@ function Pokemons(props) {
         }
       >
         {pokemons?.map((pokemon) => (
-          <PokemonCard key={pokemon.name} pokemonIdName={pokemon.name} />
+          <PokemonCard key={pokemon.id} pokemonIdName={pokemon.name} />
         ))}
       </InfiniteScroll>
     </section>

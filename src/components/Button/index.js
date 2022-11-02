@@ -58,7 +58,6 @@ function Button(props) {
   active:shadow-lg transition duration-150 ease-in-out ${conditionalStyle}`;
 
   const container = component ?? 'button';
-  console.log(container);
 
   return createElement(container, { className: style, ...rest }, children);
 

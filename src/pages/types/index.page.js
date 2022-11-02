@@ -36,8 +36,8 @@ function Types(props) {
         ))}
       </div>
       <div
-        className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-2
-          2xl:grid-cols-3  auto-rows-auto gap-16 mb-5  mt-10"
+        className="grid grid-cols-1 md:grid-cols-2
+           auto-rows-auto gap-16 mb-5  mt-10"
       >
         {typesDetails.map((type) => (
           <PokemonType key={type} type={type} />
@@ -79,7 +79,7 @@ function PokemonType({ type }) {
         </div> */}
       </div>
       <div
-        className={`relative bg-bgPrimary p-8 border-t-8 rounded-md w-[90%] h-full  mx-auto 
+        className={`relative bg-bgPrimary p-8 border-t-8 rounded-md w-[95%]  md:w-[90%] h-full  mx-auto 
         overflow-hidden  shadow-xl border-${type.name}
        before:content-[''] before:absolute before:w-[70%] before:aspect-square  before:rounded-full
        before:top-[-0%] before:right-[-0%] before:translate-x-[50%]  before:translate-y-[-50%]

@@ -65,7 +65,7 @@ function Generation({ generation }) {
           </h6>
         </div>
         <div className="flex justify-between content-center flex-wrap">
-          <div className="flex flex-col gap-2 mt-4 w-[50%]">
+          <div className="flex flex-col gap-2 mt-4 w-full lg:w-[50%]">
             <p className="text-textSecondary text-xs">
               {generationsData[generation.id - 1].description}
             </p>
@@ -107,7 +107,7 @@ function Generation({ generation }) {
             </div>
           </div>
 
-          <div className="w-[50%] flex justify-end content-center flex-wrap">
+          <div className="w-full lg:w-[50%] flex justify-center lg:justify-end content-center flex-wrap">
             {generationsData[generation.id]?.pokemons.map((pokemon) => (
               <PokemonImage key={pokemon} id={pokemon} />
             ))}
@@ -120,7 +120,7 @@ function Generation({ generation }) {
 
 function PokemonImage({ id }) {
   return (
-    <div className=" block h-auto w-[20%] -ml-10">
+    <div className=" block h-auto w-[30%] md:w-[20%] -ml-10">
       <Image
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`}
         alt="pokemon back"
