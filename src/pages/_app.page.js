@@ -1,8 +1,11 @@
-import NProgress from 'nprogress';
-import '../styles/globals.css';
-import PageLayout from '@components/PageLayout';
 import Router from 'next/router';
+
+import NProgress from 'nprogress';
+
+import PageLayout from '@components/PageLayout';
 import ErrorBoundary from '@components/ErrorBoundary';
+
+import '@styles/globals.css';
 
 NProgress.configure({
   minimum: 0.3,

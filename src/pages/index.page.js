@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { MdCatchingPokemon } from 'react-icons/md';
 import { GiPokerHand } from 'react-icons/gi';
 import {
@@ -9,6 +9,7 @@ import {
   BsFillHeartFill,
   BsFillPeaceFill,
 } from 'react-icons/bs';
+
 import {
   TransitionGroup,
   Transition as ReactTransition,
@@ -16,12 +17,35 @@ import {
 import SearchPokemon from '@components/SearchPokemon';
 import PokemonCard from '@components/PokemonCard';
 import Button from '@components/Button';
-import { HOME_PAGE } from '../constants/routes';
-import dataSeo from '../constants/dataSeo';
-import GenerateHeadPageSEO from '../helpers/seoPerPage';
-import pokeball from '../../public/assets/pokemon-logo.svg';
-import pokeball2 from '../../public/assets/pokeball2.svg';
-import pokeball1 from '../../public/assets/pokeball.svg';
+
+import { HOME_PAGE } from '@constants/routes';
+import dataSeo from '@constants/dataSeo';
+import GenerateHeadPageSEO from '@helpers/seoPerPage';
+
+import pokeball from '@assets/pokemon-logo.svg';
+import pokeball2 from '@assets/pokeball2.svg';
+import pokeball1 from '@assets/pokeball.svg';
+
+const TIMEOUT = 500;
+const getTransitionStyles = {
+  entering: {
+    position: `absolute`,
+    opacity: 0,
+    transform: `translateY(-50px)`,
+  },
+  entered: {
+    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
+    opacity: 1,
+    transform: `translateY(0px)`,
+  },
+  exiting: {
+    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${
+      TIMEOUT / 3
+    }ms ease-in-out`,
+    opacity: 0,
+    transform: `translateY(-50px)`,
+  },
+};
 
 export default function Home() {
   return (
@@ -64,7 +88,7 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <section className="bg-black py-60 clip-bg-section  ">
+      <section className="bg-black py-60 pt-72  clip-bg-section  ">
         <div className="container  text-center flex flex-col gap-10 items-center">
           <h1
             className="text-3xl lg:text-4xl  font-extrabold  bg-clip-text
@@ -312,7 +336,7 @@ function PokemonsSection() {
           <hr className="mt-12" />
 
           <div className="flex flex-row justify-evenly gap-4 my-12 items-end flex-wrap">
-            {Object.entries(pokemonsSlide).map(([key, pokemon]) => (
+            {Object.entries(pokemonsSlide).map(([, pokemon]) => (
               <TypeButton
                 key={pokemon.id}
                 color={pokemon.class}
@@ -368,27 +392,7 @@ function TypeButton({ color, title, setActivePokemon }) {
     </button>
   );
 }
-const TIMEOUT = 500;
 
-const getTransitionStyles = {
-  entering: {
-    position: `absolute`,
-    opacity: 0,
-    transform: `translateY(-50px)`,
-  },
-  entered: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${TIMEOUT}ms ease-in-out`,
-    opacity: 1,
-    transform: `translateY(0px)`,
-  },
-  exiting: {
-    transition: `opacity ${TIMEOUT}ms ease-in-out, transform ${
-      TIMEOUT / 3
-    }ms ease-in-out`,
-    opacity: 0,
-    transform: `translateY(-50px)`,
-  },
-};
 function PokemonSlideCard({ id }) {
   return (
     <div className=" p-6 flex flex-col items-center">

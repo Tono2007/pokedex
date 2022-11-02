@@ -1,9 +1,12 @@
 import Image from 'next/image';
-import { getGenerations, getGenerationDetails } from '../../services/pokemon';
-import generationsData from '../../constants/generationsData';
-import dataSeo from '../../constants/dataSeo';
-import GenerateHeadPageSEO from '../../helpers/seoPerPage';
-import { GENERATIONS_PAGE } from '../../constants/routes';
+
+import { getGenerations, getGenerationDetails } from '@services/pokemon';
+
+import { GENERATIONS_PAGE } from '@constants/routes';
+import generationsData from '@constants/generationsData';
+import dataSeo from '@constants/dataSeo';
+
+import GenerateHeadPageSEO from '@helpers/seoPerPage';
 
 function Generations({ data, generationsDetails }) {
   console.log(data);

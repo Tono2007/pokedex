@@ -5,7 +5,7 @@ import {
   TYPES_PAGE,
   FAVORITES_PAGE,
   POKEMON_PAGE,
-} from './routes';
+} from '@constants/routes';
 
 const DATA_SEO = {
   [HOME_PAGE]: {

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import {
   BsPeaceFill,
@@ -16,21 +17,24 @@ import {
   GiRunningNinja,
   GiMineExplosion,
 } from 'react-icons/gi';
+
 import Button from '@components/Button';
-import { FAVORITES_KEY } from '../../../constants/data';
-import { getPokemon, getPokemonSpecieDetail } from '../../../services/pokemon';
+
+import { POKEMON_PAGE } from '@constants/routes';
+import { FAVORITES_KEY } from '@constants/data';
+import dataSeo from '@constants/dataSeo';
+
+import GenerateHeadPageSEO from '@helpers/seoPerPage';
 import {
   padNumber,
   capitalize,
   getDataLocal,
-  addLocalFavorite,
   setLocalFavorites,
-} from '../../../helpers';
+} from '@helpers/index';
 
-import dataSeo from '../../../constants/dataSeo';
-import { POKEMON_PAGE } from '../../../constants/routes';
-import GenerateHeadPageSEO from '../../../helpers/seoPerPage';
-import pokeball2 from '../../../../public/assets/pokeball2.svg';
+import { getPokemon, getPokemonSpecieDetail } from '@services/pokemon';
+
+import pokeball2 from '@assets/pokeball2.svg';
 
 function Pokemon({ data: pokemon, description }) {
   console.log(pokemon, description);
@@ -83,14 +87,14 @@ function Pokemon({ data: pokemon, description }) {
          `}
       >
         <h2
-          className=" absolute -top-5 right-12 text-transparent text-stroke-white text-[7rem]
-            font-extrabold opacity-70 capitalize"
+          className=" absolute md:top-2 right-12 text-transparent text-stroke-white text-8xl md:text-[7rem]
+            font-extrabold opacity-30 md:opacity-70 capitalize"
         >
           {pokemon?.name}
         </h2>
         <div
-          className={`relative flex justify-around content-center   items-center
-           container w-[100%]  mt-20
+          className={`relative flex flex-col md:flex-row justify-around content-center  items-center
+           container  mt-8 md:mt-20 gap-8 md:gap-0
            after:content-[''] after:absolute after:w-[50%] after:aspect-square  after:rounded-full
       after:top-0 after:right-0 after:translate-x-[70%]  after:translate-y-[-50%]
      after:bg-gradient-to-tr from-${
@@ -124,7 +128,7 @@ function Pokemon({ data: pokemon, description }) {
             >
               {pokemon?.name}
               <span
-                className={`italic text-xs font-medium pl-1 border-b-2 border-${
+                className={`italic block md:inline text-xs font-medium pl-1 border-b-2 border-${
                   pokemon?.types[0].type.name || 'CBlue'
                 }`}
               >
@@ -220,7 +224,7 @@ function Pokemon({ data: pokemon, description }) {
       </header>
 
       <Section borderColor={pokemon.types[0].type.name} classes="relative">
-        <div className="flex justify-between content-center items-center my-1">
+        <div className="flex flex-col md:flex-row gap-2 justify-between content-center items-center my-1">
           <div>
             <h6 className="text-3xl font-extrabold capitalize mb-2">
               {pokemon?.name}
@@ -297,7 +301,7 @@ function Pokemon({ data: pokemon, description }) {
               ))}
             </p>
           </div>
-          <div className="flex gap-3 justify-center content-center flex-wrap ">
+          <div className="flex gap-3 justify-center content-center flex-wrap">
             <Box
               color={pokemon?.types[0].type.name}
               title="Experiencia"
@@ -383,7 +387,7 @@ function Pokemon({ data: pokemon, description }) {
         <h6 className="text-xl font-bold capitalize">Imagenes</h6>
         <div className="w-full flex justify-center content-center flex-wrap gap-4 mt-10">
           {Object.entries(pokemon?.sprites?.other)
-            .filter(([key, sprite]) => sprite?.front_default)
+            .filter(([, sprite]) => sprite?.front_default)
             .map(([key, sprite]) => (
               <PokemonImage
                 key={pokemon}
@@ -468,7 +472,7 @@ function StatBar({ stat, color }) {
   );
 }
 
-function PokemonImage({ id, src, title }) {
+function PokemonImage({ src, title }) {
   return (
     <div className=" block h-auto w-[20%] min-w-[200px]">
       <p className="text-xs capitalize">{capitalize(title)}</p>
@@ -491,8 +495,8 @@ function Box({ Icon, title, subtitle, color, variant = 1 }) {
 
   return (
     <div
-      className={`p-4 ${bgColor} rounded flex flex-col justify-center w-22
-       items-center gap-3 min-w-[160px]`}
+      className={`p-2 md:p-4 ${bgColor} rounded flex flex-col justify-center  
+       items-center gap-1 md-gap-3  min-w-[120px] md:min-w-[160px]`}
     >
       <h6 className={`text-lg font-medium ${textColor} `}>{title}</h6>
       <Icon className={`text-5xl  ${iconColor}`} />
@@ -508,7 +512,7 @@ function Section({ children, borderColor, classes }) {
     <section
       className={`container border-l-8 border-${
         borderColor || 'grass'
-      }  p-8 rounded bg-bgPrimary shadow-lg ${classes}`}
+      }   p-6 md:p-8 rounded bg-bgPrimary shadow-lg ${classes}`}
     >
       {children}
     </section>

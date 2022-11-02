@@ -1,4 +1,4 @@
-import { FAVORITES_KEY } from '../constants/data';
+import { FAVORITES_KEY } from '@constants/data';
 
 export const getDataLocal = (key) => {
   try {

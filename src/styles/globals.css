@@ -79,6 +79,6 @@
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
   }
   .clip-bg-section {
-    clip-path: polygon(0 15%, 100% 0, 100% 87%, 0 100%);
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
   }
 }

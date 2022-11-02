@@ -1,5 +1,3 @@
-import React from 'react';
-
 function PageHeader({ title, subtitle }) {
   return (
     <header className="my-10">

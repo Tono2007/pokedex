@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
+
 import PageHeader from '@components/PageHeader';
 import PokemonCard from '@components/PokemonCard';
-import { getDataLocal } from '../../helpers';
-import { FAVORITES_KEY } from '../../constants/data';
-import dataSeo from '../../constants/dataSeo';
-import { FAVORITES_PAGE } from '../../constants/routes';
-import GenerateHeadPageSEO from '../../helpers/seoPerPage';
+
+import { FAVORITES_KEY } from '@constants/data';
+import { FAVORITES_PAGE } from '@constants/routes';
+import dataSeo from '@constants/dataSeo';
+
+import { getDataLocal } from '@helpers';
+import GenerateHeadPageSEO from '@helpers/seoPerPage';
 
 function Favorites() {
   const [favorites, setFavorites] = useState([]);

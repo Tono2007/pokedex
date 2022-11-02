@@ -1,12 +1,12 @@
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 
-import { useState, useEffect } from 'react';
-import { getPokemon } from '../../services/pokemon';
-import { padNumber } from '../../helpers';
+import { getPokemon } from '@services/pokemon';
 
-import pokeball from '../../../public/assets/pokeball.svg';
-import pokeball2 from '../../../public/assets/pokeball2.svg';
+import { padNumber } from '@helpers/index';
+
+import pokeball2 from '@assets/pokeball2.svg';
 
 function PokemonCard({ pokemonIdName }) {
   const router = useRouter();
@@ -24,7 +24,7 @@ function PokemonCard({ pokemonIdName }) {
       }
     }
     fetchPokemon();
-  }, []);
+  }, [pokemonIdName]);
 
   if (!pokemon)
     return (

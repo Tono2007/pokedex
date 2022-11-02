@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { HiMenu } from 'react-icons/hi';
+
+import SearchPokemon from '@components/SearchPokemon';
+
 import ROUTES, {
   HOME_PAGE,
   POKEMONS_PAGE,
   GENERATIONS_PAGE,
   TYPES_PAGE,
   FAVORITES_PAGE,
-} from '../../constants/routes';
+} from '@constants/routes';
 
-import pokeball from '../../../public/assets/pokeball.png';
-import SearchPokemon from '../SearchPokemon';
+import pokeball from '@assets/pokeball.png';
 
 const navbarRoutes = [
   HOME_PAGE,
@@ -76,7 +79,7 @@ function Navbar({ location }) {
 
         <div>
           <ul className="lg:h-14 flex flex-col lg:flex-row flex-wrap">
-            {navbarRoutes.map((route, index) => (
+            {navbarRoutes.map((route) => (
               <NavLink
                 key={route}
                 title={ROUTES[route].name}

@@ -1,10 +1,10 @@
-import Head from 'next/head';
 import { useRouter } from 'next/router';
+
 import Navbar from '@components/Navbar';
 import PageTransition from '@components/PageTransition';
-import PropTypes from 'prop-types';
 import Footer from '@components/Footer';
-import GenerateHeadPageSEO from '../../helpers/seoPerPage';
+
+import PropTypes from 'prop-types';
 
 function PageLayout(props) {
   const { children } = props;

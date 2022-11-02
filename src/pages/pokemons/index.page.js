@@ -1,11 +1,15 @@
-import { useState, useEffect } from 'react';
-import PokemonCard from '@components/PokemonCard';
+import { useState } from 'react';
+
 import InfiniteScroll from 'react-infinite-scroll-component';
-import dataSeo from '../../constants/dataSeo';
-import GenerateHeadPageSEO from '../../helpers/seoPerPage';
-import { getPokemons } from '../../services/pokemon';
-import { PAGE_LIMIT } from '../../constants/data';
-import { POKEMONS_PAGE } from '../../constants/routes';
+import PokemonCard from '@components/PokemonCard';
+
+import { PAGE_LIMIT } from '@constants/data';
+import { POKEMONS_PAGE } from '@constants/routes';
+import dataSeo from '@constants/dataSeo';
+
+import GenerateHeadPageSEO from '@helpers/seoPerPage';
+
+import { getPokemons } from '@services/pokemon';
 
 function Pokemons(props) {
   const { data } = props;

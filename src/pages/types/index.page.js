@@ -1,13 +1,14 @@
-import Image from 'next/image';
 import PokemonCard from '@components/PokemonCard';
-import { getPokemonTypes, getTypeDetails } from '../../services/pokemon';
-import dataSeo from '../../constants/dataSeo';
-import { TYPES_PAGE } from '../../constants/routes';
-import GenerateHeadPageSEO from '../../helpers/seoPerPage';
+
+import { getPokemonTypes, getTypeDetails } from '@services/pokemon';
+
+import { TYPES_PAGE } from '@constants/routes';
+import dataSeo from '@constants/dataSeo';
+import GenerateHeadPageSEO from '@helpers/seoPerPage';
 
 function Types(props) {
   console.log(props);
-  const { data, typesDetails } = props;
+  const { typesDetails } = props;
   return (
     <section className="container">
       <GenerateHeadPageSEO
