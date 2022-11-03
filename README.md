@@ -2,13 +2,15 @@
 
 La típica applicación pokedex que todos hacen, simplemente para practicar next  y tener mi primer acercamiento con tailwind y testing.
 
+Simplemente muestra, busca y guarda tus pokemones ademas de secciones como generaciones y tipos.
+
 ## **CAPTURAS**
 
-| <img src="public/assets/screenshots/screenshots-1.webp" height="500px"/>  | <img src="public/assets/screenshots/screenshots-2.webp" height="500px"/>  |
+| <img src="public/assets/screenshots/screenshot-1.webp" height="auto"/>  | <img src="public/assets/screenshots/screenshot-2.webp" height="auto"/>  |
 | ------------- | ------------- |
-| <img src="public/assets/screenshots/screenshots-3.webp" height="500px"/>   | <img src="public/assets/screenshots/screenshots-4.webp" height="500px"/>   |
-| <img src="public/assets/screenshots/screenshots-5.webp" height="500px"/>   | <img src="public/assets/screenshots/screenshots-6.webp" height="500px"/>   |
-| <img src="public/assets/screenshots/screenshots-7.webp" height="500px"/>   | <img src="public/assets/screenshots/screenshots-8.webp" height="500px"/>   |
+| <img src="public/assets/screenshots/screenshot-3.webp" />   | <img src="public/assets/screenshots/screenshot-4.webp" />   |
+| <img src="public/assets/screenshots/screenshot-5.webp" />   | <img src="public/assets/screenshots/screenshot-6.webp" />   |
+| <img src="public/assets/screenshots/screenshot-7.webp" />   | <img src="public/assets/screenshots/screenshot-8.webp" />   |
 
 ## **DEMO**
 
