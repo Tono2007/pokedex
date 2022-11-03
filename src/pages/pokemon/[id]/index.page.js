@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PropTypes, { arrayOf, shape } from 'prop-types';
 import Image from 'next/image';
 
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
@@ -38,7 +39,6 @@ import { getPokemon, getPokemonSpecieDetail } from '@services/pokemon';
 import pokeball2 from '@assets/pokeball2.svg';
 
 function Pokemon({ data: pokemon, description }) {
-  console.log(pokemon, description);
   /* const [isFavorite, setIsFavorite] = useState(() =>
     Boolean(
       getDataLocal(FAVORITES_KEY).find((pokeId) => pokeId === pokemon.id),
@@ -48,6 +48,7 @@ function Pokemon({ data: pokemon, description }) {
   const [isFavorite, setIsFavorite] = useState();
 
   useEffect(() => {
+    console.log(pokemon, description);
     setFavorites(getDataLocal(FAVORITES_KEY) || []);
   }, []);
 
@@ -309,6 +310,7 @@ function Pokemon({ data: pokemon, description }) {
               color={pokemon?.types[0].type.name}
               title="Especie"
               subtitle={pokemon?.species.name}
+              variant={1}
               Icon={BsPeaceFill}
             />
             <Box
@@ -327,7 +329,7 @@ function Pokemon({ data: pokemon, description }) {
         {pokemon?.stats.map((stat, index) => (
           <>
             <StatBar
-              key={stat.stat}
+              key={stat.stat.name}
               stat={stat}
               color={pokemon?.types[0].type.name}
             />
@@ -385,11 +387,7 @@ function Pokemon({ data: pokemon, description }) {
           {Object.entries(pokemon?.sprites?.other)
             .filter(([, sprite]) => sprite?.front_default)
             .map(([key, sprite]) => (
-              <PokemonImage
-                key={pokemon}
-                src={sprite?.front_default}
-                title={key}
-              />
+              <PokemonImage key={key} src={sprite?.front_default} title={key} />
             ))}
           {Object.entries(pokemon?.sprites)
             .filter(
@@ -397,7 +395,7 @@ function Pokemon({ data: pokemon, description }) {
                 key !== 'other' && key !== 'versions' && sprite,
             )
             .map(([key, sprite]) => (
-              <PokemonImage key={pokemon} src={sprite} title={key} />
+              <PokemonImage key={key} src={sprite} title={key} />
             ))}
           {Object.entries(pokemon?.sprites?.versions).map(([key, version]) =>
             Object.entries(version)
@@ -531,6 +529,73 @@ export const getServerSideProps = async (context) => {
     console.log(error);
     return { notFound: true };
   }
+};
+
+const propTypeStat = PropTypes.shape({
+  base_stat: PropTypes.number.isRequired,
+  stat: PropTypes.shape({ name: PropTypes.string.isRequired }),
+});
+Pokemon.propTypes = {
+  data: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    height: PropTypes.number.isRequired,
+    order: PropTypes.number.isRequired,
+    weight: PropTypes.number.isRequired,
+    abilities: PropTypes.arrayOf(
+      PropTypes.shape({
+        ability: PropTypes.shape({ name: PropTypes.string.isRequired }),
+      }),
+    ),
+    base_experience: PropTypes.number.isRequired,
+    moves: PropTypes.arrayOf(
+      PropTypes.shape({
+        move: PropTypes.shape({ name: PropTypes.string.isRequired }),
+      }),
+    ),
+    sprites: PropTypes.shape({ front_default: PropTypes.string.isRequired }),
+    stats: PropTypes.arrayOf(propTypeStat),
+    types: PropTypes.arrayOf(
+      shape({ type: PropTypes.shape({ name: PropTypes.string.isRequired }) }),
+    ),
+  }),
+  description: PropTypes.shape({
+    flavor_text_entries: arrayOf(
+      PropTypes.shape({
+        flavor_text: PropTypes.string.isRequired,
+        language: PropTypes.shape({
+          name: PropTypes.string.isRequired,
+        }),
+      }),
+    ),
+  }).isRequired,
+};
+
+Pokemon.defaultProps = {
+  data: [],
+};
+StatBar.propTypes = {
+  color: PropTypes.string.isRequired,
+  stat: propTypeStat.isRequired,
+};
+PokemonImage.propTypes = {
+  src: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
+Box.propTypes = {
+  Icon: PropTypes.elementType.isRequired,
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.node.isRequired,
+  color: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf([1, 2]).isRequired,
+};
+Section.propTypes = {
+  borderColor: PropTypes.elementType.isRequired,
+  classes: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
+Section.defaultProps = {
+  classes: '',
 };
 
 export default Pokemon;

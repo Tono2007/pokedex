@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function PageHeader({ title, subtitle }) {
   return (
     <header className="my-10">
@@ -6,5 +8,10 @@ function PageHeader({ title, subtitle }) {
     </header>
   );
 }
+
+PageHeader.propTypes = {
+  title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string.isRequired,
+};
 
 export default PageHeader;

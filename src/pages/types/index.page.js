@@ -1,9 +1,13 @@
+import PropTypes from 'prop-types';
+
 import PokemonCard from '@components/PokemonCard';
 
 import { getPokemonTypes, getTypeDetails } from '@services/pokemon';
 
 import { TYPES_PAGE } from '@constants/routes';
 import dataSeo from '@constants/dataSeo';
+import { RELATION_TITLES } from '@constants/data';
+
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
 
 function Types(props) {
@@ -40,7 +44,7 @@ function Types(props) {
            auto-rows-auto gap-16 mb-5  mt-10"
       >
         {typesDetails.map((type) => (
-          <PokemonType key={type} type={type} />
+          <PokemonType key={type.name} type={type} />
         ))}
       </div>
       {/* <div className="flex flex-col gap-10 mt-9">
@@ -51,15 +55,6 @@ function Types(props) {
     </section>
   );
 }
-
-const relationsTitles = {
-  double_damage_from: 'Doble daño de',
-  double_damage_to: 'Doble de daño a',
-  half_damage_from: 'Mitad de daño de',
-  half_damage_to: 'Mitad de daño a',
-  no_damage_from: 'No recibe daño de',
-  no_damage_to: 'No hace daño a',
-};
 
 function PokemonType({ type }) {
   return (
@@ -101,12 +96,12 @@ function PokemonType({ type }) {
           <div className="flex flex-col h-full">
             {Object.entries(type?.damage_relations)?.map(
               ([relation, relationTypes]) => (
-                <div key={relation} className="p-1 bordfer-2">
+                <div key={`${relation} ${type.name}`} className="p-1 bordfer-2">
                   <div className="flex gap-2 flex-wrap">
-                    <p className="text-sm">{relationsTitles[relation]} -</p>
+                    <p className="text-sm">{RELATION_TITLES[relation]} -</p>
                     {relationTypes?.map((relationType) => (
                       <span
-                        key={relationType}
+                        key={`${relation} ${type.name} ${relationType.name}`}
                         className={`  capitalize
                         rounded
                         text-contrastText text-xs  font-semibold
@@ -170,5 +165,50 @@ export const getStaticProps = async () => {
     },
   };
 };
+
+const propTypeDamageRelations = PropTypes.arrayOf(
+  PropTypes.shape({ name: PropTypes.string }),
+);
+const propTypePokemonType = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  generation: PropTypes.shape({ name: PropTypes.string.isRequired }).isRequired,
+  names: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      language: PropTypes.shape({ name: PropTypes.string }),
+    }),
+  ).isRequired,
+  damage_relations: PropTypes.shape({
+    double_damage_from: propTypeDamageRelations,
+    double_damage_to: propTypeDamageRelations,
+    half_damage_from: propTypeDamageRelations,
+    half_damage_to: propTypeDamageRelations,
+    no_damage_from: propTypeDamageRelations,
+    no_damage_to: propTypeDamageRelations,
+  }),
+  pokemon: PropTypes.arrayOf(
+    PropTypes.shape({
+      pokemon: PropTypes.shape({ name: PropTypes.string.isRequired })
+        .isRequired,
+    }),
+  ),
+});
+
+Types.propTypes = {
+  typesDetails: PropTypes.arrayOf(propTypePokemonType),
+};
+Types.defaultProps = {
+  typesDetails: [],
+};
+PokemonType.propTypes = {
+  type: propTypePokemonType.isRequired,
+};
+
+/* Types.propTypes = {
+  type: PropTypes.string.isRequired,
+  names: PropTypes.string.isRequired,
+  generation: PropTypes.string.isRequired,
+};typesDetails */
 
 export default Types;

@@ -1,4 +1,5 @@
 import { createElement } from 'react';
+import PropTypes from 'prop-types';
 
 const colors = {
   default: {
@@ -14,7 +15,6 @@ const colors = {
     styles: '',
   },
 };
-
 const sizes = {
   small: {
     style: 'px-4 py-1.5  font-medium text-xs ',
@@ -26,6 +26,8 @@ const sizes = {
     style: 'px-7 py-3.5  font-normal text-md ',
   },
 };
+const colorsName = Object.entries(colors).map(([key]) => key);
+const sizesNames = Object.entries(sizes).map(([key]) => key);
 
 function Button(props) {
   const { color = 'primary' } = props;
@@ -75,5 +77,22 @@ function Button(props) {
   );
  */
 }
+
+Button.propTypes = {
+  color: PropTypes.oneOf(colorsName),
+  size: PropTypes.oneOf(sizesNames),
+  children: PropTypes.node,
+  classes: PropTypes.string,
+  variant: PropTypes.oneOf(['contained', 'outlined']),
+  component: PropTypes.string,
+};
+Button.defaultProps = {
+  color: 'primary',
+  size: 'medium',
+  children: null,
+  classes: '',
+  variant: 'contained',
+  component: 'button',
+};
 
 export default Button;

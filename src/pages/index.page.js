@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 import { MdCatchingPokemon } from 'react-icons/md';
 import { GiPokerHand } from 'react-icons/gi';
@@ -19,7 +20,7 @@ import PokemonCard from '@components/PokemonCard';
 import Button from '@components/Button';
 
 import { HOME_PAGE } from '@constants/routes';
-import { IMG_PATH_HOME } from '@constants/data';
+import { IMG_PATH_HOME, POKEMON_SLIDER } from '@constants/data';
 import dataSeo from '@constants/dataSeo';
 
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
@@ -252,32 +253,7 @@ function Hero() {
     </section>
   );
 }
-const pokemonsSlide = {
-  charizard: {
-    name: 'charizard',
-    id: 6,
-    type: 'fuego',
-    class: 'fire',
-  },
-  jynx: {
-    name: 'jynx',
-    id: 124,
-    type: 'hielo',
-    class: 'ice',
-  },
-  bulbasaur: {
-    name: 'bulbasaur',
-    id: 1,
-    type: 'planta',
-    class: 'grass',
-  },
-  Squirtle: {
-    name: 'Squirtle',
-    id: 7,
-    type: 'agua',
-    class: 'water',
-  },
-};
+
 function PokemonsSection() {
   const [activePokemon, setActivePokemon] = useState('charizard');
 
@@ -321,7 +297,7 @@ function PokemonsSection() {
           <hr className="mt-12" />
 
           <div className="flex flex-row justify-evenly gap-4 my-12 items-end flex-wrap">
-            {Object.entries(pokemonsSlide).map(([, pokemon]) => (
+            {Object.entries(POKEMON_SLIDER).map(([, pokemon]) => (
               <TypeButton
                 key={pokemon.id}
                 color={pokemon.class}
@@ -351,7 +327,7 @@ function PokemonsSection() {
                     ...transitionStyles[status],
                   }}
                 >
-                  <PokemonSlideCard id={pokemonsSlide[activePokemon].id} />
+                  <PokemonSlideCard id={POKEMON_SLIDER[activePokemon].id} />
                 </div>
               )}
             </ReactTransition>
@@ -401,3 +377,12 @@ function PokemonSlideCard({ id }) {
     </div>
   );
 }
+
+PokemonSlideCard.propTypes = {
+  id: PropTypes.number.isRequired,
+};
+TypeButton.propTypes = {
+  color: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  setActivePokemon: PropTypes.func.isRequired,
+};

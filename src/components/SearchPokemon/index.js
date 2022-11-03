@@ -1,4 +1,6 @@
 import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
+
 import { AiOutlineSearch } from 'react-icons/ai';
 
 function SearchPokemon({ classes }) {
@@ -18,7 +20,7 @@ function SearchPokemon({ classes }) {
       className={`h-full flex items-center  mx-auto  w-fit ${classes}`}
       onSubmit={handleSearch}
     >
-      <div class="relative ml-4">
+      <div className="relative ml-4">
         <button
           title="Buscar"
           type="submit"
@@ -41,5 +43,12 @@ function SearchPokemon({ classes }) {
     </form>
   );
 }
+
+SearchPokemon.propTypes = {
+  classes: PropTypes.string,
+};
+SearchPokemon.defaultProps = {
+  classes: '',
+};
 
 export default SearchPokemon;

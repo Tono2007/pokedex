@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import PropTypes from 'prop-types';
 
 import { HiMenu } from 'react-icons/hi';
 
@@ -96,5 +97,14 @@ function Navbar({ location }) {
     </nav>
   );
 }
+
+Navbar.propTypes = {
+  location: PropTypes.string.isRequired,
+};
+NavLink.propTypes = {
+  href: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  active: PropTypes.bool.isRequired,
+};
 
 export default Navbar;

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import PropTypes from 'prop-types';
 
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PokemonCard from '@components/PokemonCard';
@@ -73,7 +74,7 @@ function Pokemons(props) {
         }
       >
         {pokemons?.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemonIdName={pokemon.name} />
+          <PokemonCard key={pokemon.name} pokemonIdName={pokemon.name} />
         ))}
       </InfiniteScroll>
     </section>
@@ -97,6 +98,15 @@ export const getStaticProps = async () => {
       data: [],
     },
   };
+};
+
+Pokemons.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({ name: PropTypes.string.isRequired }),
+  ),
+};
+Pokemons.defaultProps = {
+  data: [],
 };
 
 export default Pokemons;

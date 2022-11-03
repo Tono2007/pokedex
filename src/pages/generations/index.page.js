@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import PropTypes from 'prop-types';
 
 import { getGenerations, getGenerationDetails } from '@services/pokemon';
 
@@ -9,8 +10,8 @@ import dataSeo from '@constants/dataSeo';
 import { IMG_PATH_HOME } from '@constants/data';
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
 
-function Generations({ data, generationsDetails }) {
-  console.log(data);
+function Generations({ generationsDetails }) {
+  console.log(generationsDetails);
   return (
     <section className="container">
       <GenerateHeadPageSEO
@@ -165,6 +166,38 @@ export const getStaticProps = async () => {
       data: [],
     },
   };
+};
+
+const propTypeGeneration = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  main_region: PropTypes.shape({ name: PropTypes.string.isRequired }),
+  names: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      language: PropTypes.shape({ name: PropTypes.string }),
+    }),
+  ).isRequired,
+  pokemon_species: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  types: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+});
+
+Generations.propTypes = {
+  generationsDetails: PropTypes.arrayOf(propTypeGeneration).isRequired,
+};
+Generation.propTypes = {
+  generation: propTypeGeneration.isRequired,
+};
+PokemonImage.propTypes = {
+  id: PropTypes.number.isRequired,
 };
 
 export default Generations;

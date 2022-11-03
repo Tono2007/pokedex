@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import PropTypes from 'prop-types';
 
 import { getPokemon } from '@services/pokemon';
 
@@ -28,13 +29,13 @@ function PokemonCard({ pokemonIdName }) {
 
   if (!pokemon)
     return (
-      <div class="w-full h-28  rounded-md mx-auto bg-gray-300 p-3">
-        <div class="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
-          <div class="flex flex-col space-y-3">
-            <div class="w-36 bg-gray-400 h-6 rounded-md " />
-            <div class="w-24 bg-gray-400 h-6 rounded-md " />
+      <div className="w-full h-28  rounded-md mx-auto bg-gray-300 p-3">
+        <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
+          <div className="flex flex-col space-y-3">
+            <div className="w-36 bg-gray-400 h-6 rounded-md " />
+            <div className="w-24 bg-gray-400 h-6 rounded-md " />
           </div>
-          <div class="w-12 bg-gray-400 h-12 rounded-full " />
+          <div className="w-12 bg-gray-400 h-12 rounded-full " />
         </div>
       </div>
     );
@@ -99,5 +100,9 @@ function PokemonCard({ pokemonIdName }) {
     </article>
   );
 }
+PokemonCard.propTypes = {
+  pokemonIdName: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+};
 
 export default PokemonCard;
