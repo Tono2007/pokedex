@@ -36,7 +36,6 @@ function Pokemons(props) {
       console.log(error);
     }
   };
-
   return (
     <section className="container">
       <GenerateHeadPageSEO
@@ -61,16 +60,23 @@ function Pokemons(props) {
         next={fetchPokemons}
         hasMore={hasMore}
         loader={
-          <div className="text-center w-full col-span-5">
+          <div
+            className="text-center w-full 
+          col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 
+          col-start-1"
+          >
             <span className="text-center text-base ">
               Buscando Pokemones...
             </span>
           </div>
         }
         endMessage={
-          <center>
-            <b>No hay mas instructores registrados</b>
-          </center>
+          <div
+            className="text-center w-full  col-span-1 sm:col-span-2 md:col-span-3 lg:col-span-4 
+          col-start-1"
+          >
+            <span className="text-center text-base ">No hay mas pokemones</span>
+          </div>
         }
       >
         {pokemons?.map((pokemon) => (

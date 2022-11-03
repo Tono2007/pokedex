@@ -65,7 +65,7 @@ function Navbar({ location }) {
         <div className="flex gap-3 p-2 items-center ml-3">
           <button
             type="button"
-            className="lg:hidden"
+            className="xl:hidden"
             onClick={() => setMenu((prev) => !prev)}
           >
             <HiMenu className="text-3xl text-contrastText " />
