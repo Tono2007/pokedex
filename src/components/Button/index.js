@@ -30,8 +30,8 @@ const colorsName = Object.entries(colors).map(([key]) => key);
 const sizesNames = Object.entries(sizes).map(([key]) => key);
 
 function Button(props) {
-  const { color = 'primary' } = props;
   const {
+    color = 'primary',
     children,
     variant,
     size = 'medium',

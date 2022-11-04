@@ -5,7 +5,7 @@ export const TYPES_PAGE = 'TypesPage';
 export const FAVORITES_PAGE = 'favoritesPage';
 export const POKEMON_PAGE = 'pokemonPage';
 
-const ROUTES = {
+export const ROUTES = {
   [HOME_PAGE]: { path: '/', name: 'Inicio', page: HOME_PAGE },
   [POKEMONS_PAGE]: { path: '/pokemons', name: 'Pokedex', page: POKEMONS_PAGE },
   [GENERATIONS_PAGE]: {

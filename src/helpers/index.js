@@ -1,4 +1,5 @@
 import { FAVORITES_KEY } from '@constants/data';
+import { ROUTES, POKEMON_PAGE } from '@constants/routes';
 
 export const getDataLocal = (key) => {
   try {
@@ -35,7 +36,8 @@ export function capitalize(str) {
 }
 
 export function pokemonPath(id) {
-  return `/pokemon/${id}`;
+  return `${ROUTES[POKEMON_PAGE].path}/${id}`;
+  // return `/pokemon/${id}`;
 }
 
 export function getPokemonDefaultImg(sprites) {
