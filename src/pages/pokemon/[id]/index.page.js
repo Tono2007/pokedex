@@ -50,7 +50,7 @@ function Pokemon({ data: pokemon, description }) {
   useEffect(() => {
     console.log(pokemon, description);
     setFavorites(getDataLocal(FAVORITES_KEY) || []);
-  }, []);
+  }, [pokemon, description]);
 
   /*   const isFavorite = Boolean(favorites.find((pokeId) => pokeId === pokemon.id)); */
   useEffect(() => {

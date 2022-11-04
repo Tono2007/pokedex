@@ -7,7 +7,8 @@ import { HiMenu } from 'react-icons/hi';
 
 import SearchPokemon from '@components/SearchPokemon';
 
-import ROUTES, {
+import {
+  ROUTES,
   HOME_PAGE,
   POKEMONS_PAGE,
   GENERATIONS_PAGE,
