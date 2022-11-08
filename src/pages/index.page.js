@@ -382,7 +382,7 @@ PokemonSlideCard.propTypes = {
   id: PropTypes.number.isRequired,
 };
 TypeButton.propTypes = {
-  color: PropTypes.number.isRequired,
+  color: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   setActivePokemon: PropTypes.func.isRequired,
 };

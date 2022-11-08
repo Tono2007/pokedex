@@ -9,6 +9,7 @@ import dataSeo from '@constants/dataSeo';
 
 import { IMG_PATH_HOME } from '@constants/data';
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
+import PageHeader from '@components/PageHeader';
 
 function Generations({ generationsDetails }) {
   console.log(generationsDetails);
@@ -22,14 +23,12 @@ function Generations({ generationsDetails }) {
        
       )} */}
 
-      <header className="my-10">
-        <h1 className="text-5xl font-bold ">Generaciones</h1>
-        <h2 className="text-base text-textSecondary">
-          Una generación es denominada un conjunto de videojuegos dentro de la
+      <PageHeader
+        title="Generaciones"
+        subtitle="Una generación es denominada un conjunto de videojuegos dentro de la
           franquicia Pokémon que introduce nuevas especies Pokémon. Aqui podras
-          encontrar todas las generaciones.
-        </h2>
-      </header>
+          encontrar todas las generaciones."
+      />
       <div className="flex flex-col gap-16 my-9">
         {generationsDetails.map((generation) => (
           <Generation key={generation.name} generation={generation} />

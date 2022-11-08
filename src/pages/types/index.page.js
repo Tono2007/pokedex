@@ -9,6 +9,7 @@ import dataSeo from '@constants/dataSeo';
 import { RELATION_TITLES } from '@constants/data';
 
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
+import PageHeader from '@components/PageHeader';
 
 function Types(props) {
   console.log(props);
@@ -23,12 +24,10 @@ function Types(props) {
        
       )} */}
 
-      <header className="my-10">
-        <h1 className="text-5xl font-bold ">Tipos</h1>
-        <h2 className="text-base text-textSecondary">
-          Aqui podras encontrar todos lo pokemones
-        </h2>
-      </header>
+      <PageHeader
+        title="Tipos"
+        subtitle="Aqui podras encontrar todos lo pokemones"
+      />
       <div className="flex gap-3 flex-wrap">
         {typesDetails.map((type) => (
           <span

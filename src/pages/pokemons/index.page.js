@@ -11,6 +11,7 @@ import dataSeo from '@constants/dataSeo';
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
 
 import { getPokemons } from '@services/pokemon';
+import PageHeader from '@components/PageHeader';
 
 function Pokemons(props) {
   const { data } = props;
@@ -46,16 +47,14 @@ function Pokemons(props) {
        
       )} */}
 
-      <header className="mt-10">
-        <h1 className="text-5xl font-bold ">Pokedex</h1>
-        <h2 className="text-base text-textSecondary">
-          Aqui podras encontrar todos lo pokemones
-        </h2>
-      </header>
+      <PageHeader
+        title="Pokedex"
+        subtitle="Aqui podras encontrar todos lo pokemones"
+      />
 
       <InfiniteScroll
         className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3
-         lg:grid-cols-4  xl:grid-cols-4  gap-7 mb-5  pt-10"
+         lg:grid-cols-4  xl:grid-cols-4  gap-7 mb-5  pt-4"
         dataLength={pokemons.length}
         next={fetchPokemons}
         hasMore={hasMore}
