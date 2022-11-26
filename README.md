@@ -26,6 +26,10 @@ Para el sitio utilice las siguientes tecnologias:
 - Vercel
 - PropTypes
 
+## **PÁGINAS**
+
+![Pages](https://user-images.githubusercontent.com/35477201/204094088-77386bce-6684-4506-9ae2-893d972aead2.png)
+
 ## **USO**
 
 Para usar este proyecto:
