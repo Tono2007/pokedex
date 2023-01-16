@@ -1,6 +1,7 @@
 import Router from 'next/router';
 
 import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 import PageLayout from '@components/PageLayout';
 import ErrorBoundary from '@components/ErrorBoundary';

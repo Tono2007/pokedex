@@ -18,7 +18,7 @@ export const addLocalFavorite = (favorite) => {
   localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
 };
 
-export const listEmpty = (number) => {
+export const getEmptyList = (number) => {
   const array = [];
   for (let index = 0; index < number; index += 1) {
     array.push(index);
@@ -28,10 +28,12 @@ export const listEmpty = (number) => {
 
 export function padNumber(n) {
   const s = `000${n}`;
-  return s.substr(s.length - 4);
+  /* return s.substr(s.length - 4); */
+  return s.slice(s.length - 4, s.length);
 }
 
-export function capitalize(str) {
+// change '-' and '_' to ' '
+export function formatImageName(str) {
   return str.replace(/[-_]/g, ' ');
 }
 

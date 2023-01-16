@@ -11,6 +11,18 @@ export const RELATION_TITLES = {
   no_damage_to: 'No hace daño a',
 };
 export const POKEMON_SLIDER = {
+  onix: {
+    name: 'onix',
+    id: 95,
+    type: 'roca',
+    class: 'rock',
+  },
+  bulbasaur: {
+    name: 'bulbasaur',
+    id: 1,
+    type: 'planta',
+    class: 'grass',
+  },
   charizard: {
     name: 'charizard',
     id: 6,
@@ -22,12 +34,6 @@ export const POKEMON_SLIDER = {
     id: 124,
     type: 'hielo',
     class: 'ice',
-  },
-  bulbasaur: {
-    name: 'bulbasaur',
-    id: 1,
-    type: 'planta',
-    class: 'grass',
   },
   Squirtle: {
     name: 'Squirtle',

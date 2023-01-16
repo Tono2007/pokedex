@@ -28,7 +28,7 @@ import dataSeo from '@constants/dataSeo';
 import GenerateHeadPageSEO from '@helpers/seoPerPage';
 import {
   padNumber,
-  capitalize,
+  formatImageName,
   getDataLocal,
   setLocalFavorites,
   getPokemonDefaultImg,
@@ -469,7 +469,7 @@ function StatBar({ stat, color }) {
 function PokemonImage({ src, title }) {
   return (
     <div className=" block h-auto w-[20%] min-w-[200px]">
-      <p className="text-xs capitalize">{capitalize(title)}</p>
+      <p className="text-xs capitalize">{formatImageName(title)}</p>
       <Image
         src={src}
         alt="pokemon back"

@@ -42,89 +42,13 @@ export default function Home() {
       />
       <Hero />
       <PokemonsSection />
-      <section className="bg-white py-40 container">
-        <div className="container   flex flex-col gap-7 items-center text-center">
-          <h1
-            className="text-3xl lg:text-4xl font-bold  bg-clip-text
-         text-transparent bg-gradient-to-r from-CBlue to-BURed"
-          >
-            Descubre y recolecta pokemones extraodinarios
-          </h1>
-          <h2
-            className="text-3xl lg:text-4xl font-bold  bg-clip-text
-         text-transparent bg-gradient-to-r from-CBlue to-BURed"
-          >
-            Aqui podras encontrar todos lo pokemones
-          </h2>
-          <p className="text-md text-textSecondary ">
-            Encuentra tus fichas de pokemones ordenados
-            <br />
-            donde cada color representa su tipo
-          </p>
-          <span
-            className="text-xl bg-clip-text block
-         text-transparent bg-gradient-to-r from-CBlue to-BURed"
-          >
-            ■ ■ ■
-          </span>
-          <Link href="/pokemons">
-            <Button component="a" color="primary" size="large" classes="mt-5">
-              Ver Pokedex
-            </Button>
-          </Link>
-        </div>
-      </section>
-      <section className="bg-black py-60 pt-72  clip-bg-section  ">
-        <div className="container  text-center flex flex-col gap-10 items-center">
-          <h1
-            className="text-3xl lg:text-4xl  font-extrabold  bg-clip-text
-         text-transparent bg-gradient-to-r from-CBlue to-BURed"
-          >
-            Descubre y recolecta pokemones extraodinarios
-          </h1>
-
-          <p className="text-md text-contrastText ">
-            Busca por nombre o utilizando el numero nacional... <br />
-            ¿qué pokemon estas buscando?
-          </p>
-          <span
-            className="text-xl bg-clip-text block
-         text-transparent bg-gradient-to-r from-CBlue to-BURed"
-          >
-            ■ ■ ■
-          </span>
-          <div className="mx-auto text-center ">
-            <SearchPokemon />
-          </div>
-        </div>
-      </section>
-      <section className="container my-40 flex flex-col gap-12 items-center text-center">
-        <h1
-          className=" text-6xl font-extralight bg-clip-text text-center
-         text-transparent bg-gradient-to-r from-CBlue to-BURed"
-        >
-          Descubre estos pokemones
-        </h1>
-        <hr className="w-[50%] mx-auto border-GoldenYellow border-t-2  " />
-        <span
-          className="text-xl bg-clip-text text-center block
-         text-transparent bg-gradient-to-r from-CBlue to-BURed"
-        >
-          ■ ■ ■
-        </span>
-        <div
-          className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-4
-           auto-rows-auto gap-7   "
-        >
-          <PokemonCard pokemonIdName={3} />
-          <PokemonCard pokemonIdName={18} />
-          <PokemonCard pokemonIdName={4} />
-          <PokemonCard pokemonIdName={12} />
-        </div>
-      </section>
+      <PokedexSection />
+      <SearchPokemonSection />
+      <DiscoverPokemonsSection />
     </>
   );
 }
+
 function Hero() {
   function SectionBox({ color = 'poison', title, description, Icon, href }) {
     return (
@@ -165,7 +89,7 @@ function Hero() {
           width="500px"
         />
       </div>
-      <div className="absolute bottom-0 right-[30%] h-60 w-auto">
+      <div className="absolute bottom-0 right-[30%] h-60 w-auto ">
         <Image
           src={pokeball1}
           alt="pokemon back"
@@ -179,8 +103,8 @@ function Hero() {
       >
         <div className="flex flex-col gap-8 h-full  justify-center py-[10%]">
           <div className="flex h-10 justify-start w-fit gap-4">
-            <span className="rounded shadow-md aspect-square min-w-[40px] bg-BURed/90 grid place-content-center">
-              <MdCatchingPokemon className="text-3xl text-contrastText" />
+            <span className="rounded shadow-md aspect-square min-w-[40px] bg-BURed/90 grid place-content-center ">
+              <MdCatchingPokemon className="text-3xl text-contrastText  " />
             </span>
             <Image src={pokeball} alt="Logo" width="100" height="100" />
           </div>
@@ -192,7 +116,7 @@ function Hero() {
             Descubre y recolecta pokemones extraodinarios
           </h1>
           <span
-            className="text-md bg-clip-text  
+            className="text-md bg-clip-text   
  text-transparent bg-gradient-to-r from-CBlue to-BURed"
           >
             ■ ■ ■
@@ -253,7 +177,6 @@ function Hero() {
     </section>
   );
 }
-
 function PokemonsSection() {
   const [activePokemon, setActivePokemon] = useState('charizard');
 
@@ -313,6 +236,10 @@ function PokemonsSection() {
         </div>
 
         <div className="text-right min-h-[500px]">
+          <div
+            className={`absolute  bg-${POKEMON_SLIDER[activePokemon].class}/50  top-[40%] right-[15%]  w-60 h-60 blur-1xl rounded-full animate-ping`}
+          />
+
           <TransitionGroup style={{ position: 'relative' }}>
             <ReactTransition
               key={activePokemon}
@@ -337,6 +264,43 @@ function PokemonsSection() {
     </section>
   );
 }
+function PokedexSection() {
+  return (
+    <section className="bg-white py-40 container">
+      <div className="container   flex flex-col gap-7 items-center text-center">
+        <h1
+          className="text-3xl lg:text-4xl font-bold  bg-clip-text
+ text-transparent bg-gradient-to-r from-CBlue to-BURed"
+        >
+          Descubre y recolecta pokemones extraodinarios
+        </h1>
+        <h2
+          className="text-3xl lg:text-4xl font-bold  bg-clip-text
+ text-transparent bg-gradient-to-r from-CBlue to-BURed"
+        >
+          Aqui podras encontrar todos lo pokemones
+        </h2>
+        <p className="text-md text-textSecondary ">
+          Encuentra tus fichas de pokemones ordenados
+          <br />
+          donde cada color representa su tipo
+        </p>
+        <span
+          className="text-xl bg-clip-text block
+ text-transparent bg-gradient-to-r from-CBlue to-BURed"
+        >
+          ■ ■ ■
+        </span>
+        <Link href="/pokemons">
+          <Button component="a" color="primary" size="large" classes="mt-5">
+            Ver Pokedex
+          </Button>
+        </Link>
+      </div>
+    </section>
+  );
+}
+
 function TypeButton({ color, title, setActivePokemon }) {
   return (
     <button
@@ -353,7 +317,6 @@ function TypeButton({ color, title, setActivePokemon }) {
     </button>
   );
 }
-
 function PokemonSlideCard({ id }) {
   return (
     <div className=" p-6 flex flex-col items-center">
@@ -375,6 +338,62 @@ function PokemonSlideCard({ id }) {
         </Button>
       </Link>
     </div>
+  );
+}
+function SearchPokemonSection() {
+  return (
+    <section className="bg-black py-60 pt-72  clip-bg-section  ">
+      <div className="container  text-center flex flex-col gap-10 items-center">
+        <h1
+          className="text-3xl lg:text-4xl  font-extrabold  bg-clip-text
+   text-transparent bg-gradient-to-r from-CBlue to-BURed"
+        >
+          Descubre y recolecta pokemones extraodinarios
+        </h1>
+
+        <p className="text-md text-contrastText ">
+          Busca por nombre o utilizando el numero nacional... <br />
+          ¿qué pokemon estas buscando?
+        </p>
+        <span
+          className="text-xl bg-clip-text block
+   text-transparent bg-gradient-to-r from-CBlue to-BURed"
+        >
+          ■ ■ ■
+        </span>
+        <div className="mx-auto text-center ">
+          <SearchPokemon />
+        </div>
+      </div>
+    </section>
+  );
+}
+function DiscoverPokemonsSection() {
+  return (
+    <section className="container my-40 flex flex-col gap-12 items-center text-center">
+      <h1
+        className=" text-6xl font-extralight bg-clip-text text-center
+   text-transparent bg-gradient-to-r from-CBlue to-BURed"
+      >
+        Descubre estos pokemones
+      </h1>
+      <hr className="w-[50%] mx-auto border-GoldenYellow border-t-2  " />
+      <span
+        className="text-xl bg-clip-text text-center block
+   text-transparent bg-gradient-to-r from-CBlue to-BURed"
+      >
+        ■ ■ ■
+      </span>
+      <div
+        className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-4
+     auto-rows-auto gap-7   "
+      >
+        <PokemonCard pokemonIdName={3} />
+        <PokemonCard pokemonIdName={18} />
+        <PokemonCard pokemonIdName={4} />
+        <PokemonCard pokemonIdName={12} />
+      </div>
+    </section>
   );
 }
 

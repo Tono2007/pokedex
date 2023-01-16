@@ -14,7 +14,7 @@ const DATA_SEO = {
   },
   [POKEMONS_PAGE]: {
     title: 'Pokedex',
-    description: 'encuentra pokemons',
+    description: 'Encuentra pokemons',
   },
   [POKEMON_PAGE]: {
     title: 'Perfil pokemon',
