@@ -37,3 +37,7 @@ Para usar este proyecto:
 - Clonar repositorio: ` git clone https://github.com/Tono2007/pokedex.git`
 - Instalar dependencias: `npm install` o` yarn install`
 - Ejecutarlo: `npm run dev` o ` yarn run dev`
+
+---
+
+- Test Runner: `npm run test` o ` yarn run test`

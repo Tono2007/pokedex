@@ -29,7 +29,10 @@ function PokemonCard({ pokemonIdName }) {
 
   if (!pokemon)
     return (
-      <div className="w-full h-28  rounded-md mx-auto bg-gray-300 p-3">
+      <div
+        className="w-full h-28  rounded-md mx-auto bg-gray-300 p-3"
+        role="progressbar"
+      >
         <div className="flex animate-pulse flex-row items-center h-full justify-center space-x-5">
           <div className="flex flex-col space-y-3">
             <div className="w-36 bg-gray-400 h-6 rounded-md " />

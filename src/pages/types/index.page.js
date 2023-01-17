@@ -26,7 +26,7 @@ function Types(props) {
 
       <PageHeader
         title="Tipos"
-        subtitle="Aqui podras encontrar todos lo pokemones"
+        subtitle="Aqui podras encontrar todos los tipos de pokemones"
       />
       <div className="flex gap-3 flex-wrap">
         {typesDetails.map((type) => (
