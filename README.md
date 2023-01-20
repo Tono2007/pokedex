@@ -26,9 +26,6 @@ Para el sitio utilice las siguientes tecnologias:
 - Vercel
 - PropTypes
 
-## **PÁGINAS**
-
-![Pages](https://user-images.githubusercontent.com/35477201/204094088-77386bce-6684-4506-9ae2-893d972aead2.png)
 
 ## **USO**
 
@@ -40,4 +37,15 @@ Para usar este proyecto:
 
 ---
 
+## **PÁGINAS**
+
+![Pages](https://user-images.githubusercontent.com/35477201/213747975-c0995bfe-5372-45c9-a4c9-e3f616a64655.jpg)
+
+## **Testing**
 - Test Runner: `npm run test` o ` yarn run test`
+
+
+Coverage
+![coverage](https://user-images.githubusercontent.com/35477201/213748208-86d21b89-ca28-46a4-b020-17497fc2c2ef.jpg)
+
+
