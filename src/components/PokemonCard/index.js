@@ -63,12 +63,11 @@ function PokemonCard({ pokemonIdName }) {
       rounded-lg    ${pokemonTypeShadow}  ${pokemonTypeBg} overflow-hidden`}
       >
         <div className="flex justify-between content-center relative">
-          <div className="absolute top-[-100%] right-[-60%] h-40 w-auto">
-            <Image
-              src={pokeball2}
+          <div className="absolute top-[-100%] right-[-60%] h-40 w-auto ">
+            <img
+              src="/assets/pokeball2.svg"
               alt="pokemon back"
-              height="300px"
-              width="300px"
+              className="w-[300px] h-[300px]"
             />
           </div>
 
@@ -91,12 +90,11 @@ function PokemonCard({ pokemonIdName }) {
             </div>
           </div>
 
-          <Image
+          <img
             src={getPokemonDefaultImg(pokemon.sprites)}
             alt="pokemon back"
+            className=" relative w-[150px] h-[80px]"
             objectFit="contain"
-            width="150"
-            height="100"
           />
         </div>
       </button>

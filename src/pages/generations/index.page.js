@@ -113,7 +113,7 @@ function Generation({ generation }) {
             </div>
           </div>
 
-          <div className="w-full lg:w-[50%] flex justify-center lg:justify-end content-center flex-wrap">
+          <div className="relative w-full lg:w-[50%] flex justify-center lg:justify-end content-center flex-wrap">
             {generationsData[generation.id]?.pokemons.map((pokemon) => (
               <PokemonImage key={pokemon} id={pokemon} />
             ))}
@@ -127,7 +127,7 @@ function Generation({ generation }) {
 function PokemonImage({ id }) {
   return (
     <div className=" block h-auto w-[30%] md:w-[25%] -ml-8 md:-ml-16">
-      <Image
+      <img
         src={`${IMG_PATH_HOME}/${id}.png`}
         alt="pokemon back"
         height="200px"

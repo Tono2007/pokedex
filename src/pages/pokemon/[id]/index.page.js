@@ -114,8 +114,8 @@ function Pokemon({ data: pokemon, description }) {
             className="absolute top-[-80%] left-[0] h-[50%] w-auto 
                      translate-y-[-50%] translate-x-[-50%]"
           >
-            <Image
-              src={pokeball2}
+            <img
+              src="/assets/pokeball2.svg"
               alt="pokemon back"
               height="600px"
               width="600px"
@@ -208,11 +208,11 @@ function Pokemon({ data: pokemon, description }) {
                   unitDisplay: 'short',
                 })}
               </p>
-              <Image
+              <img
                 src={getPokemonDefaultImg(pokemon.sprites)}
                 alt="pokemon back"
-                height="250px"
-                width="250px"
+                height="230px"
+                width="230px"
                 objectFit="contain"
               />
             </div>
@@ -470,7 +470,7 @@ function PokemonImage({ src, title }) {
   return (
     <div className=" block h-auto w-[20%] min-w-[200px]">
       <p className="text-xs capitalize">{formatImageName(title)}</p>
-      <Image
+      <img
         src={src}
         alt="pokemon back"
         height="200px"
